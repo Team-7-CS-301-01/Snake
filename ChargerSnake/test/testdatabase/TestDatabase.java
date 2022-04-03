@@ -135,7 +135,7 @@ public class TestDatabase {
         } while(done == 1);
         
         
-        db.deleteLeaderBoard();
+        //db.deleteLeaderBoard();
         
         db.disconnectFromLeaderBoard() ;
 

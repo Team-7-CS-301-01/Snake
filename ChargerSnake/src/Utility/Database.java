@@ -18,7 +18,7 @@ public class Database
     {
         
         
-        URL = "jdbc:derby:leaderboarddb;create=true";
+        URL = "jdbc:derby:LeaderBoard;create=true";
         
         conn = DriverManager.getConnection(URL);
         
@@ -28,8 +28,8 @@ public class Database
         query = "";
         
         
-        if (!doesTableExists("leaderboarddb")) {
-                
+        if (!doesTableExists("LeaderBoard")) {
+               
              	initLeaderBoard();
                 
         }

@@ -7,7 +7,18 @@ public class Snake {
     int score;
     int dx, dy;
     boolean isColliding;
-
+    
+    
+    public Snake()
+    {
+        this.x = 0;
+        this.y = 0;
+        this.name = "";
+        this.score = 0;
+        this.dx = 0;
+        this.dy = 0;
+        this.isColliding = false;
+    }
     public int getx() {
         return x;
     }

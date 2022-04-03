@@ -2,20 +2,21 @@ package controller;
 
 import model.ModelInterface;
 import model.SnakeModel;
-import view.SnakeView;
+import view.SnakeFrame;
 
 public class SnakeController implements ControllerInterface {
 
     private SnakeModel model;
-    private SnakeView view;
+    private SnakeFrame view;
 
-    public SnakeController(SnakeModel model, SnakeView view) {
+    public SnakeController(SnakeModel model, SnakeFrame view) {
         this.model = model;
         this.view = view;
     }
 
     public void initController() {
-
+        
+        
     }
 
 }
