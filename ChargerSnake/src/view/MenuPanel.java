@@ -2,19 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import view.SnakeFrame;
+package view;
+
 /**
  *
  * @author jmoore
  */
-public class TestView {
-    
-    public static void main(String[] args)
-    {
-        SnakeFrame view = new SnakeFrame();
-        view.setVisible(true);
-        
-    }
-    
+public class MenuPanel extends SnakeFrame{
     
 }
