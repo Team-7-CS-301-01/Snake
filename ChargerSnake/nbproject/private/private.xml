@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/model/ScoreObject.java</file>
             <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/model/GameObject.java</file>
             <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/model/SnakeModel.java</file>
             <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/controller/SnakeController.java</file>
+            <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/view/SnakeView.java</file>
             <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/model/Snake.java</file>
         </group>
     </open-files>

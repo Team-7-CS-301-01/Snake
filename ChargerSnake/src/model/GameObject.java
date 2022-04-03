@@ -6,6 +6,11 @@ public class GameObject implements Observer {
 
     private int x, y;
 
+    public GameObject() {
+        x = -1;
+        y = -1;
+    }
+
     public int getx() {
         return x;
     }
