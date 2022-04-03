@@ -1,14 +1,9 @@
 package model;
 
-public class ScoreObject {
+public class ScoreObject extends GameObject {
 
-    private int x, y;
-
-    public int getx() {
-        return x;
-    }
-
-    public int gety() {
-        return y;
+    public ScoreObject(int x, int y) {
+        setx(x);
+        sety(y);
     }
 }

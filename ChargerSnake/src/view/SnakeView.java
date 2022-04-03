@@ -3,15 +3,28 @@ package view;
 import Utility.Message;
 import Utility.Observer;
 import controller.SnakeController;
+import java.awt.Graphics;
+import javax.swing.JPanel;
 import model.SnakeModel;
+import java.awt.*;
+import javax.swing.*;
 
 public class SnakeView extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form SnakeGUI
      */
+    private SnakeModel model;
+    private SnakeController controller;
+
     public SnakeView() {
         initComponents();
+        setFocusable(true);
+    }
+
+    public void initGame(SnakeModel model, SnakeController controller) {
+        this.model = model;
+        this.controller = controller;
     }
 
     public void update(Message m) {
@@ -27,21 +40,35 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PauseMenu = new javax.swing.JPanel();
+        Gameplay = new javax.swing.JPanel();
+        Buttons = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PauseMenu.setBackground(new java.awt.Color(250, 250, 240));
+        Gameplay.setBackground(new java.awt.Color(250, 250, 240));
 
-        javax.swing.GroupLayout PauseMenuLayout = new javax.swing.GroupLayout(PauseMenu);
-        PauseMenu.setLayout(PauseMenuLayout);
-        PauseMenuLayout.setHorizontalGroup(
-            PauseMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+        javax.swing.GroupLayout GameplayLayout = new javax.swing.GroupLayout(Gameplay);
+        Gameplay.setLayout(GameplayLayout);
+        GameplayLayout.setHorizontalGroup(
+            GameplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 325, Short.MAX_VALUE)
         );
-        PauseMenuLayout.setVerticalGroup(
-            PauseMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+        GameplayLayout.setVerticalGroup(
+            GameplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 335, Short.MAX_VALUE)
+        );
+
+        Buttons.setBackground(new java.awt.Color(250, 240, 240));
+
+        javax.swing.GroupLayout ButtonsLayout = new javax.swing.GroupLayout(Buttons);
+        Buttons.setLayout(ButtonsLayout);
+        ButtonsLayout.setHorizontalGroup(
+            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        ButtonsLayout.setVerticalGroup(
+            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -49,16 +76,20 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(PauseMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Gameplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Buttons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(PauseMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(Gameplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Buttons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,15 +134,28 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
         SnakeModel model = new SnakeModel();
         SnakeController controller = new SnakeController(model, view);
 
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SnakeView().setVisible(true);
-//            }
-//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PauseMenu;
+    private javax.swing.JPanel Buttons;
+    private javax.swing.JPanel Gameplay;
     // End of variables declaration//GEN-END:variables
+    public JPanel getGameplay() {
+        return Gameplay;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(Color.red);
+        g.fillOval(model.getScoreObject(0).getx(), model.getScoreObject(0).gety(), model.getUNIT_SIZE(), model.getUNIT_SIZE());
+
+        for (int i = 0; i < model.getSnakeLength(); i++) {
+            if (i == 0) {
+                g.setColor(Color.green);
+                g.fillRect(model.getSnake(i).getx(), model.getSnake(i).gety(), model.getUNIT_SIZE(), model.getUNIT_SIZE());
+            } else {
+                g.setColor(new Color(45, 180, 0));
+            }
+        }
+    }
+
 }

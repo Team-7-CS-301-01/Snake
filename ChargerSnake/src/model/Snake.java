@@ -1,63 +1,19 @@
 package model;
 
-public class Snake {
+public class Snake extends GameObject {
 
-    private int x, y;
-    String name;
-    int score;
-    int dx, dy;
-    boolean isColliding;
+    private char direction;
 
-    public int getx() {
-        return x;
+    public Snake() {
+        this.setx(250);
+        this.sety(250);
     }
 
-    public int gety() {
-        return y;
+    public char getDirection() {
+        return direction;
     }
 
-    public String getName() {
-        return name;
+    public void setDirection(char direction) {
+        this.direction = direction;
     }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getdx() {
-        return dx;
-    }
-
-    public int getdy() {
-        return dy;
-    }
-
-    public boolean getColliding() {
-        return isColliding;
-    }
-
-    public void setx(int x) {
-        this.x = x;
-    }
-
-    public void sety(int y) {
-        this.y = y;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void setdx(int dx) {
-        this.dx = dx;
-    }
-
-    public void setdy(int dy) {
-        this.dy = dy;
-    }
-
 }
