@@ -9,7 +9,7 @@ import model.SnakeModel;
 import java.awt.*;
 import javax.swing.*;
 
-public class SnakeView extends javax.swing.JFrame implements Observer {
+public class SnakeFrame extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form SnakeGUI
@@ -17,7 +17,7 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
     private SnakeModel model;
     private SnakeController controller;
 
-    public SnakeView() {
+    public SnakeFrame() {
         initComponents();
         setFocusable(true);
     }
@@ -112,14 +112,15 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -129,7 +130,7 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
 //            }
 //        });
         //</editor-fold>
-        SnakeView view = new SnakeView();
+        SnakeFrame view = new SnakeFrame();
         view.setVisible(true);
         SnakeModel model = new SnakeModel();
         SnakeController controller = new SnakeController(model, view);
