@@ -14,7 +14,6 @@ public class SnakeModel implements Subject {
     private static final int BOARD_WIDTH = 500;
     private static final int UNIT_SIZE = 25;
     private static final int GAME_UNITS = (BOARD_WIDTH * BOARD_LENGTH) / UNIT_SIZE;
-    private boolean running;
     private int score;
 
     // game state, menu state, start state, game end state
@@ -28,12 +27,10 @@ public class SnakeModel implements Subject {
         }
     }
 
-    
- 
     public void gamePlay() {
         //"GamePlayFrame" -argument for updating view
     }
-    
+
     public void gameOverMenu() {
         //"LeaderBoardFrame"-argument for updating view
     }
@@ -121,10 +118,6 @@ public class SnakeModel implements Subject {
 
     public GameObject getSnake(int x) {
         return snake.get(x);
-    }
-
-    public boolean isRunning() {
-        return running;
     }
 
     public ScoreObject getScoreObject(int x) {
