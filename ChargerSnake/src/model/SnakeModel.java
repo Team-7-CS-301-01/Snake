@@ -124,14 +124,17 @@ public class SnakeModel implements Subject {
         return objects.get(x);
     }
 
+    @Override
     public void attach(Observer o) {
         observers.add(o);
     }
 
+    @Override
     public void detach(Observer o) {
         observers.remove(o);
     }
 
+    @Override
     public void notifyUpdate(Message m) {
         for (Observer o : observers) {
             o.update(m);

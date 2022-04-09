@@ -12,7 +12,7 @@ public class SnakeController implements ActionListener {
     private boolean running;
     private char direction = 'R';
     private Timer timer;
-    private int DELAY = 1000;
+    private final int DELAY = 1000 / 20;
 
     public void initController(SnakeModel model, SnakeGUI view) {
         this.model = model;
@@ -25,13 +25,6 @@ public class SnakeController implements ActionListener {
         timer = new Timer(DELAY, this);
         timer.start();
         model.spawnObject();
-//        while (running) {
-//            Snake s = (Snake) model.getSnake(0);
-//            System.out.println(s.getx() + " " + s.gety());
-//            System.out.println(s.getDirection());
-//            System.out.println("ScoreObject @" + model.getScoreObject(0).getx() + " " + model.getScoreObject(0).gety());
-//            System.out.println("Length: " + model.getSnakeLength());
-//        }
     }
 
     @Override
@@ -39,10 +32,6 @@ public class SnakeController implements ActionListener {
         Object obj = e.getSource();
         if (running) {
             Snake s = (Snake) model.getSnake(0);
-            System.out.println(s.getx() + " " + s.gety());
-            System.out.println(s.getDirection());
-            System.out.println("ScoreObject @" + model.getScoreObject(0).getx() + " " + model.getScoreObject(0).gety());
-            System.out.println("Length: " + model.getSnakeLength());
             s.setDirection(direction);
             model.moveSnake();
             model.checkScoreObject();
@@ -66,10 +55,12 @@ public class SnakeController implements ActionListener {
         } else if (obj == view.getReturnStart()) {
             view.drawStartFrame();
         }
+        view.getGameFrame().repaint();
     }
 
     public class GameController extends KeyAdapter {
 
+        @Override
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
