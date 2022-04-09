@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import model.SnakeModel;
 
+
 /**
  *
  * @author jmoore
@@ -35,14 +36,14 @@ public class SnakeGUI implements ActionListener {
     private final JButton resumeButton;
     private final JButton returnToStartButton;
     private SnakeModel model;
-    
+    private SnakeController controller;
     
     
     SnakeGUI() {
         
         model = new SnakeModel();
         
-        SnakeController controller = new SnakeController(model, this);
+        controller = new SnakeController(model, this);
         
         
       
@@ -74,6 +75,7 @@ public class SnakeGUI implements ActionListener {
         returnToStartButton = new ReturnStartComp().getReturnStartComp();
         
         
+        //Player needed for user info
         
         
         ////////////////////////////////////////////////////////////////  
@@ -152,12 +154,20 @@ public class SnakeGUI implements ActionListener {
       Object obj = e.getSource();
       
       if (obj == startButton) {
+        //save player name in Player obj in model
+        //store till game ends
+        //then send that info to database to see if it earns spot 
+        
+        
+        //call func to update score
         drawGamePlayFrame();
       } 
       if (obj == pauseButton) {
+        //call func to update score
         drawPauseFrame();
       }
       if(obj == resumeButton) {
+        //call func to update score
         drawGamePlayFrame();
       }
       if(obj == returnToStartButton)
@@ -172,7 +182,8 @@ public class SnakeGUI implements ActionListener {
     
     private void drawStartFrame() {
         
-        clearPanels();
+        clearGamePanel();
+        clearMenuPanel();
         
         
         ////////////////////////////////////////////////////////////////  
@@ -206,15 +217,15 @@ public class SnakeGUI implements ActionListener {
     
     private void drawGamePlayFrame() {
         
-        clearPanels();
-        
+        clearGamePanel();
+        clearMenuPanel();
         
         ////////////////////////////////////////////////////////////////  
         ////////////////////////////////////////////////////////////////
         
         //proof of concept - drawing rectangle the same way the snake and score obj would be drawn
         GamePanel.add(new MyRect());
-        
+        GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
 
         //real drawing of snake and score obj
@@ -242,7 +253,8 @@ public class SnakeGUI implements ActionListener {
     
     private void drawPauseFrame() {
         
-        clearPanels();
+        clearGamePanel();
+        clearMenuPanel();
         
         ////////////////////////////////////////////////////////////////  
         ////////////////////////////////////////////////////////////////
@@ -276,16 +288,16 @@ public class SnakeGUI implements ActionListener {
     
     private void drawLeaderBoardFrame() {
         
-        clearPanels();
         
+        clearGamePanel();
+        clearMenuPanel();
         
         ////////////////////////////////////////////////////////////////  
         ////////////////////////////////////////////////////////////////
         
-        
-        //proof of concept - drawing rectangle the same way the snake and score obj would be drawn
-        GamePanel.add(new MyRect());
-        
+        //LeaderBoard needs work
+        //The output on the last row is being cut off
+        GamePanel.add(new LeaderBoard());
         
         /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
@@ -304,34 +316,33 @@ public class SnakeGUI implements ActionListener {
     
     
     
-    
-    
-    private void clearPanels() {
+    private void clearGamePanel() {
         
         GamePanel.removeAll();
         
         GamePanel.revalidate();
         
-        GamePanel.repaint();
+        GamePanel.repaint();   
+        
+    }
+    
+    
+    
+    private void clearMenuPanel() {
         
         MenuPanel.removeAll();
         
         MenuPanel.revalidate();
         
-        MenuPanel.repaint();
+        MenuPanel.repaint();    
         
     }
     
-    
-
 
     
     public static void main(String[] args) {
-        //initGlobal
-        SnakeGUI view = new SnakeGUI();
         
-     
- 
+        SnakeGUI view = new SnakeGUI();
         
     }
 

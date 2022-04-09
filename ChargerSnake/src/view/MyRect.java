@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
@@ -14,7 +15,11 @@ import javax.swing.JPanel;
  */
 class MyRect extends JPanel {
     
-
+    MyRect() {
+        this.setPreferredSize(new Dimension(500, 500));
+        this.setBackground(Color.black);
+        this.setBounds(0, 0, 500, 500);
+    }
     
     @Override
     public void paintComponent(Graphics g) {
