@@ -12,6 +12,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 import model.SnakeModel;
 
@@ -19,7 +20,7 @@ import model.SnakeModel;
  *
  * @author jmoore
  */
-public class SnakeGUI {
+public class SnakeGUI extends JPanel {
 
     private final JFrame window;
     private final JPanel GamePanel;
@@ -34,8 +35,8 @@ public class SnakeGUI {
     private final JLabel pauseLabel;
     private final JButton resumeButton;
     private final JButton returnToStartButton;
-    private SnakeModel model;
-    private SnakeController controller;
+    private final SnakeModel model;
+    private final SnakeController controller;
 
     SnakeGUI(SnakeController controller, SnakeModel model) {
         this.model = model;
@@ -44,6 +45,7 @@ public class SnakeGUI {
 
         //initLocal
         window = new JFrame("Charger Snake");
+        window.setFocusable(true);
 
         GamePanel = new JPanel();
 
@@ -253,5 +255,4 @@ public class SnakeGUI {
     public JFrame getGameFrame() {
         return window;
     }
-
 }
