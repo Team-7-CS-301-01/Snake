@@ -28,16 +28,22 @@ public class SnakeModel implements Subject {
         }
     }
 
-    public void gameOver() {
-
+    
+ 
+    public void gamePlay() {
+        //"GamePlayFrame" -argument for updating view
+    }
+    
+    public void gameOverMenu() {
+        //"LeaderBoardFrame"-argument for updating view
     }
 
     public void pauseMenu() {
-
+        //"PauseFrame"-argument for updating view
     }
 
     public void startMenu() {
-
+        //"StartFrame"-argument for updating view
     }
 
     public void moveSnake() {
