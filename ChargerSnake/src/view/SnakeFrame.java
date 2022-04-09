@@ -9,7 +9,7 @@ import model.SnakeModel;
 import java.awt.*;
 import javax.swing.*;
 
-public class SnakeView extends javax.swing.JFrame implements Observer {
+public class SnakeFrame extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form SnakeGUI
@@ -17,7 +17,7 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
     private SnakeModel model;
     private SnakeController controller;
 
-    public SnakeView() {
+    public SnakeFrame() {
         initComponents();
         setFocusable(true);
     }
@@ -28,7 +28,22 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
     }
 
     public void update(Message m) {
-
+        
+        switch(m.getMessageContent()) {
+          case "StartFrame":
+            // code block
+            break;
+          case "PauseFrame":
+            // code block
+          case "GamePlayFrame":
+            // code block
+            break;
+          case "LeaderBoardFrame":
+            // code block            
+          default:
+            // code block
+        }
+        
     }
 
     /**
@@ -40,56 +55,51 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Gameplay = new javax.swing.JPanel();
-        Buttons = new javax.swing.JPanel();
+        GamePanel = new javax.swing.JPanel();
+        MenuPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Gameplay.setBackground(new java.awt.Color(250, 250, 240));
+        GamePanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout GameplayLayout = new javax.swing.GroupLayout(Gameplay);
-        Gameplay.setLayout(GameplayLayout);
-        GameplayLayout.setHorizontalGroup(
-            GameplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+        javax.swing.GroupLayout GamePanelLayout = new javax.swing.GroupLayout(GamePanel);
+        GamePanel.setLayout(GamePanelLayout);
+        GamePanelLayout.setHorizontalGroup(
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
-        GameplayLayout.setVerticalGroup(
-            GameplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
+        GamePanelLayout.setVerticalGroup(
+            GamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        Buttons.setBackground(new java.awt.Color(250, 240, 240));
+        MenuPanel.setBackground(new java.awt.Color(128, 128, 128));
 
-        javax.swing.GroupLayout ButtonsLayout = new javax.swing.GroupLayout(Buttons);
-        Buttons.setLayout(ButtonsLayout);
-        ButtonsLayout.setHorizontalGroup(
-            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
+        MenuPanel.setLayout(MenuPanelLayout);
+        MenuPanelLayout.setHorizontalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        ButtonsLayout.setVerticalGroup(
-            ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        MenuPanelLayout.setVerticalGroup(
+            MenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 194, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Gameplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Buttons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(91, Short.MAX_VALUE))
+            .addComponent(GamePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Gameplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(GamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Buttons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(MenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -112,14 +122,15 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SnakeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SnakeFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -129,7 +140,7 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
 //            }
 //        });
         //</editor-fold>
-        SnakeView view = new SnakeView();
+        SnakeFrame view = new SnakeFrame();
         view.setVisible(true);
         SnakeModel model = new SnakeModel();
         SnakeController controller = new SnakeController(model, view);
@@ -137,12 +148,15 @@ public class SnakeView extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Buttons;
-    private javax.swing.JPanel Gameplay;
+    private javax.swing.JPanel GamePanel;
+    private javax.swing.JPanel MenuPanel;
     // End of variables declaration//GEN-END:variables
+    
+    
     public JPanel getGameplay() {
-        return Gameplay;
+        return GamePanel;
     }
+    
 
     public void draw(Graphics g) {
         g.setColor(Color.red);

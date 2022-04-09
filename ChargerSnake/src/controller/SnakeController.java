@@ -8,13 +8,13 @@ import javax.swing.Timer;
 public class SnakeController implements ActionListener {
 
     private SnakeModel model;
-    private SnakeView view;
+    private SnakeFrame view;
     private boolean running = true;
     private char direction = 'R';
     private Timer timer;
     private int DELAY = 1000;
 
-    public SnakeController(SnakeModel model, SnakeView view) {
+    public SnakeController(SnakeModel model, SnakeFrame view) {
         this.model = model;
         this.view = view;
         startGame();
