@@ -15,12 +15,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import model.SnakeModel;
 
-
 /**
  *
  * @author jmoore
  */
-public class SnakeGUI implements ActionListener {
+public class SnakeGUI {
 
     private final JFrame window;
     private final JPanel GamePanel;
@@ -37,204 +36,121 @@ public class SnakeGUI implements ActionListener {
     private final JButton returnToStartButton;
     private SnakeModel model;
     private SnakeController controller;
-    
-    
-    SnakeGUI() {
-        
-        model = new SnakeModel();
-        
-        controller = new SnakeController(model, this);
-        
-        
-      
+
+    SnakeGUI(SnakeController controller, SnakeModel model) {
+        this.model = model;
+        this.controller = controller;
+        controller.initController(model, this);
+
         //initLocal
         window = new JFrame("Charger Snake");
-        
+
         GamePanel = new JPanel();
-        
+
         MenuPanel = new JPanel();
-        
+
         chargerSnakeMess = new ChargerSnakeComp().getChargerSnakeComp();
-        
+
         enterNameMess = new MessLabelComp().getMessLabelComp();
-        
+
         startButton = new StartButtonComp().getStartButtonComp();
-        
+
         inputField = new InputFieldComp().getInputFieldComp();
-        
+
         pauseButton = new PauseButtonComp().getPauseButtonComp();
-        
+
         scoreLabel = new ScoreLabelComp().getScoreLabelComp();
-        
+
         scoreTextArea = new ScoreTextAreaComp().getScoreTextAreaComp();
-        
+
         pauseLabel = new PauseLabelComp().getPauseLabelComp();
-        
+
         resumeButton = new ResumeButtonComp().getResumeButtonComp();
-        
+
         returnToStartButton = new ReturnStartComp().getReturnStartComp();
-        
-        
+
         //Player needed for user info
-        
-        
-        ////////////////////////////////////////////////////////////////  
         ////////////////////////////////////////////////////////////////
-                
-        
-        
-        
-        
+        ////////////////////////////////////////////////////////////////
         //GamePanel
         GamePanel.setBackground(Color.black);
-        
+
         GamePanel.setPreferredSize(new Dimension(500, 500));
-        
+
         GamePanel.add(chargerSnakeMess);
 
         GamePanel.add(enterNameMess);
 
         GamePanel.setLayout(new GridLayout(3, 1, 0, 5));
-        
-     
-      
-        ////////////////////////////////////////////////////////////////  
+
         ////////////////////////////////////////////////////////////////
-        
-        
-        
+        ////////////////////////////////////////////////////////////////
         //MenuPanel
         MenuPanel.setBackground(Color.gray);
-        
-        MenuPanel.setPreferredSize(new Dimension(500, 100));     
-        
-        
+
+        MenuPanel.setPreferredSize(new Dimension(500, 100));
+
         MenuPanel.add(inputField);
 
         MenuPanel.add(startButton);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
-        
-        
-        startButton.addActionListener(this);
-        
-        
-        ////////////////////////////////////////////////////////////////  
-        ////////////////////////////////////////////////////////////////
 
-        
-        
-        
-        
-        
-        
+        startButton.addActionListener(controller);
+
+        ////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         //Window
         window.add(GamePanel, BorderLayout.CENTER);
-        
-        window.add(MenuPanel, BorderLayout.PAGE_END);
-        
-        window.setSize(500, 600);
-        
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        window.setVisible(true);
-        
-        
-    }
-    
-    
-    
-    
-    
-    
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-      Object obj = e.getSource();
-      
-      if (obj == startButton) {
-        //save player name in Player obj in model
-        //store till game ends
-        //then send that info to database to see if it earns spot 
-        
-        
-        //call func to update score
-        drawGamePlayFrame();
-      } 
-      if (obj == pauseButton) {
-        //call func to update score
-        drawPauseFrame();
-      }
-      if(obj == resumeButton) {
-        //call func to update score
-        drawGamePlayFrame();
-      }
-      if(obj == returnToStartButton)
-      {
-          drawStartFrame();
-      }
-      
-    }    
-    
-   
-    
-    
-    private void drawStartFrame() {
-        
+        window.add(MenuPanel, BorderLayout.PAGE_END);
+
+        window.setSize(500, 600);
+
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        window.setVisible(true);
+
+    }
+
+    public void drawStartFrame() {
+
         clearGamePanel();
         clearMenuPanel();
-        
-        
-        ////////////////////////////////////////////////////////////////  
+
         ////////////////////////////////////////////////////////////////
-        
-        
+        ////////////////////////////////////////////////////////////////
         GamePanel.add(chargerSnakeMess);
 
         GamePanel.add(enterNameMess);
 
         GamePanel.setLayout(new GridLayout(3, 1, 0, 5));
-        
-        
-      
-        ////////////////////////////////////////////////////////////////  
+
         ////////////////////////////////////////////////////////////////
-        
-        
-        
-        
+        ////////////////////////////////////////////////////////////////
         MenuPanel.add(inputField);
 
         MenuPanel.add(startButton);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
-        
-  
+
     }
-    
-    
-    
-    private void drawGamePlayFrame() {
-        
+
+    public void drawGamePlayFrame() {
+
         clearGamePanel();
         clearMenuPanel();
-        
-        ////////////////////////////////////////////////////////////////  
-        ////////////////////////////////////////////////////////////////
-        
-        //proof of concept - drawing rectangle the same way the snake and score obj would be drawn
-        GamePanel.add(new MyRect());
-        GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
+        ////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
+        //proof of concept - drawing rectangle the same way the snake and score obj would be drawn
+        GamePanel.add(new GamePieces(model));
+        GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
         //real drawing of snake and score obj
         //GamePanel.add(new GamePieces(model));
-        
-        ////////////////////////////////////////////////////////////////  
         ////////////////////////////////////////////////////////////////
-
- 
+        ////////////////////////////////////////////////////////////////
         MenuPanel.add(pauseButton);
 
         MenuPanel.add(scoreLabel);
@@ -242,34 +158,24 @@ public class SnakeGUI implements ActionListener {
         MenuPanel.add(scoreTextArea);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
-     
-        pauseButton.addActionListener(this);
+
+        pauseButton.addActionListener(controller);
 
     }
-    
-    
-    
-    
-    
-    private void drawPauseFrame() {
-        
+
+    public void drawPauseFrame() {
+
         clearGamePanel();
         clearMenuPanel();
-        
-        ////////////////////////////////////////////////////////////////  
+
         ////////////////////////////////////////////////////////////////
-        
-        
+        ////////////////////////////////////////////////////////////////
         GamePanel.add(pauseLabel);
 
         GamePanel.setLayout(new GridLayout(3, 1, 0, 5));
-      
 
-        ////////////////////////////////////////////////////////////////  
         ////////////////////////////////////////////////////////////////
-        
-    
-        
+        ////////////////////////////////////////////////////////////////
         MenuPanel.add(resumeButton);
 
         MenuPanel.add(scoreLabel);
@@ -277,82 +183,75 @@ public class SnakeGUI implements ActionListener {
         MenuPanel.add(scoreTextArea);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
-        
-        resumeButton.addActionListener(this);
 
-        
+        resumeButton.addActionListener(controller);
+
     }
-    
-    
-    
-    
-    private void drawLeaderBoardFrame() {
-        
-        
+
+    public void drawLeaderBoardFrame() {
+
         clearGamePanel();
         clearMenuPanel();
-        
-        ////////////////////////////////////////////////////////////////  
+
         ////////////////////////////////////////////////////////////////
-        
+        ////////////////////////////////////////////////////////////////
         //LeaderBoard needs work
         //The output on the last row is being cut off
         GamePanel.add(new LeaderBoard());
-        
-        /////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////
-        
-  
 
+        /////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////
         MenuPanel.add(returnToStartButton);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        
-        returnToStartButton.addActionListener(this);
 
-        
-        
+        returnToStartButton.addActionListener(controller);
+
     }
-    
-    
-    
-    private void clearGamePanel() {
-        
+
+    public void clearGamePanel() {
+
         GamePanel.removeAll();
-        
+
         GamePanel.revalidate();
-        
-        GamePanel.repaint();   
-        
+
+        GamePanel.repaint();
+
     }
-    
-    
-    
-    private void clearMenuPanel() {
-        
+
+    public void clearMenuPanel() {
+
         MenuPanel.removeAll();
-        
+
         MenuPanel.revalidate();
-        
-        MenuPanel.repaint();    
-        
-    }
-    
 
-    
+        MenuPanel.repaint();
+
+    }
+
     public static void main(String[] args) {
-        
-        SnakeGUI view = new SnakeGUI();
-        
+        new SnakeGUI(new SnakeController(), new SnakeModel());
+
     }
 
-    
-    
-    
-    
-  
-    public void addKeyListener(SnakeController.GameController gameController) {
-        System.out.println("don't know what to do yet");
+    public JButton getStart() {
+        return startButton;
     }
- 
+
+    public JButton getPause() {
+        return pauseButton;
+    }
+
+    public JButton getResume() {
+        return resumeButton;
+    }
+
+    public JButton getReturnStart() {
+        return returnToStartButton;
+    }
+
+    public JFrame getGameFrame() {
+        return window;
+    }
+
 }

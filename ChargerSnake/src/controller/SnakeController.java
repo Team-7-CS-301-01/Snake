@@ -9,40 +9,62 @@ public class SnakeController implements ActionListener {
 
     private SnakeModel model;
     private SnakeGUI view;
-    private boolean running = true;
+    private boolean running;
     private char direction = 'R';
     private Timer timer;
     private int DELAY = 1000;
 
-    public SnakeController(SnakeModel model, SnakeGUI view) {
+    public void initController(SnakeModel model, SnakeGUI view) {
         this.model = model;
         this.view = view;
-        startGame();
     }
 
     public void startGame() {
         model.initGame();
-        view.addKeyListener(new GameController());
+        view.getGameFrame().addKeyListener(new GameController());
         timer = new Timer(DELAY, this);
         timer.start();
         model.spawnObject();
-        while (running) {
+//        while (running) {
+//            Snake s = (Snake) model.getSnake(0);
+//            System.out.println(s.getx() + " " + s.gety());
+//            System.out.println(s.getDirection());
+//            System.out.println("ScoreObject @" + model.getScoreObject(0).getx() + " " + model.getScoreObject(0).gety());
+//            System.out.println("Length: " + model.getSnakeLength());
+//        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+        if (running) {
             Snake s = (Snake) model.getSnake(0);
             System.out.println(s.getx() + " " + s.gety());
             System.out.println(s.getDirection());
             System.out.println("ScoreObject @" + model.getScoreObject(0).getx() + " " + model.getScoreObject(0).gety());
             System.out.println("Length: " + model.getSnakeLength());
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        if (running) {
-            Snake s = (Snake) model.getSnake(0);
             s.setDirection(direction);
             model.moveSnake();
             model.checkScoreObject();
             running = model.checkCollision();
+        } else if (obj == view.getStart()) {
+            //save player name in Player obj in model
+            //store till game ends
+            //then send that info to database to see if it earns spot
+
+            //call func to update score
+            running = true;
+            startGame();
+
+            view.drawGamePlayFrame();
+        } else if (obj == view.getPause()) {
+            //call func to update score
+            view.drawPauseFrame();
+        } else if (obj == view.getResume()) {
+            //call func to update score
+            view.drawGamePlayFrame();
+        } else if (obj == view.getReturnStart()) {
+            view.drawStartFrame();
         }
     }
 
