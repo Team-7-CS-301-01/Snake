@@ -11,13 +11,13 @@ import java.util.Timer;
 public class SnakeController {
 
     private SnakeModel model;
-    private SnakeFrame view;
+    private SnakeGUI view;
     private boolean running = true;
     private char direction = 'R';
     private Timer timer;
     private int DELAY = 1000 / 60;
 
-    public SnakeController(SnakeModel model, SnakeFrame view) {
+    public SnakeController(SnakeModel model, SnakeGUI view) {
         this.model = model;
         this.view = view;
         startGame();
@@ -32,6 +32,9 @@ public class SnakeController {
             model.moveSnake();
             model.checkScoreObject();
             running = model.checkCollision();
+            
+            //view.setModel(model);
+            
             System.out.println(s.getx() + " " + s.gety());
             System.out.println(s.getDirection());
             System.out.println("working");
