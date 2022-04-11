@@ -10,6 +10,7 @@ public class SnakeModel implements Subject {
     private Random random;
     private ArrayList<ScoreObject> objects;
     private ArrayList<Observer> observers;
+    private ArrayList<Player> players;
     private static final int BOARD_LENGTH = 500;
     private static final int BOARD_WIDTH = 500;
     private static final int UNIT_SIZE = 25;
