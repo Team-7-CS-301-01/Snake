@@ -20,7 +20,7 @@ public class ScoreLabelComp {
 
         labelOne.setFont(new Font("Verdana", Font.BOLD, 15));
 
-        labelOne.setForeground(Color.BLUE);    
+        labelOne.setForeground(Color.BLACK);    
         
         return labelOne;
         

@@ -19,8 +19,6 @@ public class PauseButtonComp {
         JButton pause = new JButton("Pause");
 
         pause.setFont(new Font("Verdana", Font.BOLD, 15));
-
-        pause.setBackground(Color.BLUE);
         
         return pause;
         

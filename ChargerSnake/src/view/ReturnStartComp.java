@@ -20,8 +20,6 @@ public class ReturnStartComp {
 
         returnStart.setFont(new Font("Verdana", Font.BOLD, 15));
 
-        returnStart.setBackground(Color.BLUE);    
-        
         return returnStart;
     }
     

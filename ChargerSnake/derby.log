@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Apr 05 14:31:23 CDT 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017f-fb35-d2fa-00000f3d1700 
+Tue Apr 12 18:28:21 CDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0180-201b-4a7d-00000e351fc8 
 on database directory /home/jmoore/GitRepo/Snake/ChargerSnake/LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
 Loaded from file:/home/jmoore/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Ubuntu
@@ -11,6 +11,3 @@ os.arch=amd64
 os.version=5.13.0-39-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Tue Apr 05 14:31:34 CDT 2022:
-Shutting down instance a816c00e-017f-fb35-d2fa-00000f3d1700 on database directory /home/jmoore/GitRepo/Snake/ChargerSnake/LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 

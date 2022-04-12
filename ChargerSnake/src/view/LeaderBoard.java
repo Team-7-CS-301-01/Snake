@@ -42,7 +42,8 @@ public class LeaderBoard extends JPanel {
         
         
     }
-    void displayScore(String name, String score, String time)        // TODO: Add scores to player list array, sort, and then add to screen.
+    
+    private void displayScore(String name, String score, String time)        // TODO: Add scores to player list array, sort, and then add to screen.
    {
         JLabel n = new JLabel();
         n.setForeground(Color.BLUE);
@@ -71,7 +72,9 @@ public class LeaderBoard extends JPanel {
         t.setPreferredSize(new Dimension(50, 50));
         this.add(t);
    }
-   void displayHeaders() {
+    
+    private void displayHeaders() 
+    {
        JLabel n = new JLabel();
         n.setForeground(Color.BLUE);
         n.setFont(new Font("Verdana", Font.BOLD, 16));
