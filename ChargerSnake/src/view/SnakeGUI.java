@@ -25,7 +25,6 @@ public class SnakeGUI extends JPanel {
     private final JFrame window;
     private final JPanel GamePanel;
     private final JPanel MenuPanel;
-    private final JPanel lb = new LeaderBoard();
     private final JButton startButton;
     private final JLabel chargerSnakeMess;
     private final JLabel enterNameMess;
@@ -199,7 +198,7 @@ public class SnakeGUI extends JPanel {
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         //LeaderBoard needs work
-        GamePanel.add(lb);
+        GamePanel.add(new LeaderBoard(model));
 
         /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
@@ -214,7 +213,6 @@ public class SnakeGUI extends JPanel {
     public void clearGamePanel() {
 
         GamePanel.removeAll();
-        GamePanel.remove(lb);
         GamePanel.revalidate();
 
         GamePanel.repaint();
