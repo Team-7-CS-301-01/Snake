@@ -111,7 +111,9 @@ public class SnakeGUI extends JPanel {
         window.setSize(500, 600);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
+        window.setLocationRelativeTo(null);
+        
         window.setVisible(true);
 
     }
