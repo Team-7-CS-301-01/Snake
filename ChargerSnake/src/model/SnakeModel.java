@@ -1,6 +1,7 @@
 package model;
 
 import Utility.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,6 +23,10 @@ public class SnakeModel implements Subject {
         random = new Random();
         snake = new ArrayList<GameObject>();
         objects = new ArrayList<ScoreObject>();
+        try {
+            Database db = new Database();
+            players = db.getLeaderBoard();
+        } catch (SQLException e){}
         snake.add(new Snake());
         for (int i = 0; i < 5; i++) {
             snake.add(new GameObject());
@@ -117,6 +122,10 @@ public class SnakeModel implements Subject {
         }
     }
 
+    public ArrayList<Player> getPlayerList() {
+        return players;
+    }
+    
     public GameObject getSnake(int x) {
         return snake.get(x);
     }
@@ -141,7 +150,7 @@ public class SnakeModel implements Subject {
             o.update(m);
         }
     }
-
+    
     public int getBOARD_LENGTH() {
         return BOARD_LENGTH;
     }
