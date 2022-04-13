@@ -4,6 +4,8 @@
  */
 package view;
 
+import Utility.Message;
+import Utility.Observer;
 import controller.SnakeController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,7 +22,7 @@ import model.SnakeModel;
  *
  * @author jmoore
  */
-public class SnakeGUI extends JPanel {
+public class SnakeGUI implements Observer {
 
     private final JFrame window;
     private final JPanel GamePanel;
@@ -40,18 +42,18 @@ public class SnakeGUI extends JPanel {
 
     SnakeGUI(SnakeController controller, SnakeModel model) {
         this.model = model;
+
         this.controller = controller;
-        controller.initController(model, this);
 
         //initLocal
         window = new JFrame("Charger Snake");
-        window.setFocusable(true);
+
+        controller.initController(model, this);
 
         GamePanel = new JPanel();
 
         MenuPanel = new JPanel();
-       
-      
+
         chargerSnakeMess = new ChargerSnakeComp().getChargerSnakeComp();
 
         enterNameMess = new MessLabelComp().getMessLabelComp();
@@ -116,6 +118,11 @@ public class SnakeGUI extends JPanel {
         
         window.setVisible(true);
 
+        window.setResizable(false);
+
+        window.pack();
+
+        window.setFocusable(true);
     }
 
     public void drawStartFrame() {
@@ -254,5 +261,10 @@ public class SnakeGUI extends JPanel {
 
     public JFrame getGameFrame() {
         return window;
+    }
+
+    @Override
+    public void update(Message m) {
+        scoreTextArea.setText(Integer.toString(model.getScore()));
     }
 }
