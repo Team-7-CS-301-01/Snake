@@ -14,6 +14,10 @@ public class SnakeController implements ActionListener {
     private boolean game_Over = false;
     private char direction = 'R';
     private Timer timer;
+    private long timeA;
+    private int timeElapsed;
+    private int score;
+    private String name;
     private final int DELAY = 1000 / 10;
 
     public void initController(SnakeModel model, SnakeGUI view) {
@@ -27,11 +31,11 @@ public class SnakeController implements ActionListener {
         model.initGame();
         model.attach(view);
         timer.start();
+        timeA = (System.currentTimeMillis() / 1000);
         model.spawnObject();
     }
     
     public void endGame() {
-        status = -1;
         view.drawLeaderBoardFrame();
         
     }
@@ -40,7 +44,6 @@ public class SnakeController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (running) {
-            status = 1;
             Snake s = (Snake) model.getSnake(0);
             s.setDirection(direction);
             model.moveSnake();
@@ -73,8 +76,13 @@ public class SnakeController implements ActionListener {
             game_Over = false;
             view.drawStartFrame();
         } else if (!running && game_Over) {
-            view.drawLeaderBoardFrame();
+            
             timer.stop();
+            timeElapsed = (int)((System.currentTimeMillis() / 1000) - timeA);
+            score = model.getScore();
+            name = view.getName();
+            model.sendData(name, score, timeElapsed);
+            view.drawLeaderBoardFrame();
             model.detach(view);
         }
         view.getGameFrame().repaint();
