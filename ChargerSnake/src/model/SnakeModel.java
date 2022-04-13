@@ -23,10 +23,7 @@ public class SnakeModel implements Subject {
         snake = new ArrayList<GameObject>();
         objects = new ArrayList<ScoreObject>();
         observers = new ArrayList<Observer>();
-         try {
-            Database db = new Database();
-            players = db.getLeaderBoard();
-        } catch (SQLException e){}
+         
     }
 
     public void initGame() {
@@ -38,6 +35,13 @@ public class SnakeModel implements Subject {
         }
     }
 
+    public void sendData(String name, int score, int time) {
+        try {
+            Database db = new Database();
+            db.insertLeaderBoard(name, score, time);
+            players = db.getLeaderBoard();
+        } catch (SQLException e){}
+    }
     public void moveSnake() {
         //loop through snake array and move the position to the previous one
         //for the head, need to move it forward in the direction the head is facing

@@ -262,6 +262,10 @@ public class SnakeGUI implements Observer {
     public JFrame getGameFrame() {
         return window;
     }
+    
+    public String getName() {
+        return inputField.getText();
+    }
 
     @Override
     public void update(Message m) {
