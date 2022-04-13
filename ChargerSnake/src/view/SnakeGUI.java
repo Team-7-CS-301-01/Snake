@@ -27,7 +27,6 @@ public class SnakeGUI implements Observer {
     private final JFrame window;
     private final JPanel GamePanel;
     private final JPanel MenuPanel;
-    private final JPanel lb = new LeaderBoard();
     private final JButton startButton;
     private final JLabel chargerSnakeMess;
     private final JLabel enterNameMess;
@@ -114,7 +113,9 @@ public class SnakeGUI implements Observer {
         window.setSize(500, 600);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
+        window.setLocationRelativeTo(null);
+        
         window.setVisible(true);
 
         window.setResizable(false);
@@ -206,7 +207,7 @@ public class SnakeGUI implements Observer {
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         //LeaderBoard needs work
-        GamePanel.add(lb);
+        GamePanel.add(new LeaderBoard(model));
 
         /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
@@ -221,7 +222,6 @@ public class SnakeGUI implements Observer {
     public void clearGamePanel() {
 
         GamePanel.removeAll();
-        GamePanel.remove(lb);
         GamePanel.revalidate();
 
         GamePanel.repaint();

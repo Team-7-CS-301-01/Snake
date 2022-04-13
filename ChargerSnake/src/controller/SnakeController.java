@@ -29,11 +29,18 @@ public class SnakeController implements ActionListener {
         timer.start();
         model.spawnObject();
     }
+    
+    public void endGame() {
+        status = -1;
+        view.drawLeaderBoardFrame();
+        
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (running) {
+            status = 1;
             Snake s = (Snake) model.getSnake(0);
             s.setDirection(direction);
             model.moveSnake();

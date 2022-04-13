@@ -20,7 +20,6 @@ public class ResumeButtonComp {
 
         resume.setFont(new Font("Verdana", Font.BOLD, 15));
 
-        resume.setBackground(Color.BLUE); 
         
         return resume;
         
