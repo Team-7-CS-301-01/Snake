@@ -36,7 +36,7 @@ public class GamePieces extends JPanel {
                 g.setColor(Color.green);
                 g.fillRect(model.getSnake(i).getx(), model.getSnake(i).gety(), model.getUNIT_SIZE(), model.getUNIT_SIZE());
             } else {
-                g.setColor(new Color(45, 180, 0));
+                g.setColor(new Color(100, 180, 0));
                 g.fillRect(model.getSnake(i).getx(), model.getSnake(i).gety(), model.getUNIT_SIZE(), model.getUNIT_SIZE());
             }
         }

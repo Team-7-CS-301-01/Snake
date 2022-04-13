@@ -11,15 +11,20 @@ import javax.swing.JTextArea;
  * @author jmoore
  */
 public class ScoreTextAreaComp {
-    
+
+    private JTextArea displayScore;
+
+    public ScoreTextAreaComp() {
+        displayScore = new JTextArea(2, 5);
+        displayScore.setText("0");
+    }
+
     public JTextArea getScoreTextAreaComp() {
 
-        JTextArea displayScore = new JTextArea(2, 5);
+        displayScore.setSize(20, 20);
 
-        displayScore.setSize(20, 20);    
-        
         return displayScore;
-        
+
     }
-    
+
 }

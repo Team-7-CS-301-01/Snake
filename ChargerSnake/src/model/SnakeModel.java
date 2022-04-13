@@ -17,31 +17,20 @@ public class SnakeModel implements Subject {
     private static final int GAME_UNITS = (BOARD_WIDTH * BOARD_LENGTH) / UNIT_SIZE;
     private int score;
 
-    // game state, menu state, start state, game end state
-    public void initGame() {
+    public SnakeModel() {
         random = new Random();
         snake = new ArrayList<GameObject>();
         objects = new ArrayList<ScoreObject>();
+        observers = new ArrayList<Observer>();
+    }
+
+    public void initGame() {
+        snake.clear();
+        objects.clear();
         snake.add(new Snake());
         for (int i = 0; i < 5; i++) {
             snake.add(new GameObject());
         }
-    }
-
-    public void gamePlay() {
-        //"GamePlayFrame" -argument for updating view
-    }
-
-    public void gameOverMenu() {
-        //"LeaderBoardFrame"-argument for updating view
-    }
-
-    public void pauseMenu() {
-        //"PauseFrame"-argument for updating view
-    }
-
-    public void startMenu() {
-        //"StartFrame"-argument for updating view
     }
 
     public void moveSnake() {
@@ -70,12 +59,24 @@ public class SnakeModel implements Subject {
 
     public void addSnake() {
         //loop through and add snake part to snake with position at the end of the tail
-        snake.add(new Snake());
+        snake.add(new GameObject());
     }
 
     public void spawnObject() {
         //spawn a scoreObject at a random position
-        ScoreObject object = new ScoreObject(random.nextInt((int) BOARD_WIDTH / UNIT_SIZE) * UNIT_SIZE, random.nextInt((int) BOARD_LENGTH / UNIT_SIZE) * UNIT_SIZE);
+        int x = random.nextInt((int) BOARD_WIDTH / UNIT_SIZE) * UNIT_SIZE;
+        int y = random.nextInt((int) BOARD_WIDTH / UNIT_SIZE) * UNIT_SIZE;
+        int i = 0;
+        while (i < snake.size()) {
+            if (snake.get(i).getx() == x && snake.get(i).gety() == y) {
+                x = random.nextInt((int) BOARD_WIDTH / UNIT_SIZE) * UNIT_SIZE;
+                y = random.nextInt((int) BOARD_WIDTH / UNIT_SIZE) * UNIT_SIZE;
+                i = 0;
+            } else {
+                i++;
+            }
+        }
+        ScoreObject object = new ScoreObject(x, y);
         objects.add(object);
     }
 
@@ -91,7 +92,7 @@ public class SnakeModel implements Subject {
             return false;
         }
         //check if head touches right border
-        if (snake.get(0).getx() > BOARD_WIDTH) {
+        if (snake.get(0).getx() >= BOARD_WIDTH) {
             return false;
         }
         //check if head touches top border
@@ -99,7 +100,7 @@ public class SnakeModel implements Subject {
             return false;
         }
         //check if head touches bottom border
-        if (snake.get(0).gety() > BOARD_LENGTH) {
+        if (snake.get(0).gety() >= BOARD_LENGTH) {
             return false;
         }
         return true;
@@ -160,5 +161,9 @@ public class SnakeModel implements Subject {
 
     public int getSnakeLength() {
         return snake.size();
+    }
+
+    public int getScore() {
+        return score;
     }
 }
