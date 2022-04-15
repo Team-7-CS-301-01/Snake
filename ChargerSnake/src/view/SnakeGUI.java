@@ -12,10 +12,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import model.SnakeModel;
 
 /**
@@ -33,7 +34,7 @@ public class SnakeGUI implements Observer {
     private final JTextField inputField;
     private final JButton pauseButton;
     private final JLabel scoreLabel;
-    private final JTextArea scoreTextArea;
+    private final JLabel scoreLabelArea;
     private final JLabel pauseLabel;
     private final JButton resumeButton;
     private final JButton returnToStartButton;
@@ -66,7 +67,7 @@ public class SnakeGUI implements Observer {
 
         scoreLabel = new ScoreLabelComp().getScoreLabelComp();
 
-        scoreTextArea = new ScoreTextAreaComp().getScoreTextAreaComp();
+        scoreLabelArea = new ScoreLabelAreaComp().getScoreLabelAreaComp();
 
         pauseLabel = new PauseLabelComp().getPauseLabelComp();
 
@@ -154,19 +155,17 @@ public class SnakeGUI implements Observer {
 
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
-        //proof of concept - drawing rectangle the same way the snake and score obj would be drawn
         GamePanel.add(new GamePieces(model));
         GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
-        //real drawing of snake and score obj
-        //GamePanel.add(new GamePieces(model));
+        
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         MenuPanel.add(pauseButton);
 
         MenuPanel.add(scoreLabel);
 
-        MenuPanel.add(scoreTextArea);
+        MenuPanel.add(scoreLabelArea);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
@@ -191,7 +190,7 @@ public class SnakeGUI implements Observer {
 
         MenuPanel.add(scoreLabel);
 
-        MenuPanel.add(scoreTextArea);
+        MenuPanel.add(scoreLabelArea);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
@@ -206,7 +205,6 @@ public class SnakeGUI implements Observer {
 
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
-        //LeaderBoard needs work
         GamePanel.add(new LeaderBoard(model));
 
         /////////////////////////////////////////////////////
@@ -266,9 +264,14 @@ public class SnakeGUI implements Observer {
     public String getName() {
         return inputField.getText();
     }
+    
+    public void clearName() {
+        inputField.setText("");
+    }
+    
 
     @Override
     public void update(Message m) {
-        scoreTextArea.setText(Integer.toString(model.getScore()));
+        scoreLabelArea.setText(Integer.toString(model.getScore()));
     }
 }

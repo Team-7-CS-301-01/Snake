@@ -84,10 +84,13 @@ public class Database
             
             int lastPlaceScore = result.getInt("Score");
             
+            int lastPlaceTimeAlive = result.getInt("Time");
+            
+            
             int rowId = result.getInt("Id");
             
          
-            if(score > lastPlaceScore)
+            if(score >= lastPlaceScore && time > lastPlaceTimeAlive)
             {
                 
                 query = "UPDATE LeaderBoard SET Name= '" + name + "', Score= " + score + ", Time= " + time  + " WHERE Id=" + rowId + "";

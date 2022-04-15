@@ -59,14 +59,8 @@ public class SnakeController implements ActionListener {
                 view.drawPauseFrame();
             }
         } else if (obj == view.getStart()) {
-            //save player name in Player obj in model
-            //store till game ends
-            //then send that info to database to see if it earns spot
-
-            //call func to update score
             running = true;
             startGame();
-
             view.drawGamePlayFrame();
         } else if (obj == view.getResume()) {
             //call func to update score
@@ -83,9 +77,17 @@ public class SnakeController implements ActionListener {
             name = view.getName();
             model.sendData(name, score, timeElapsed);
             view.drawLeaderBoardFrame();
+            resetPlayerValues();
+            view.clearName();
             model.detach(view);
         }
         view.getGameFrame().repaint();
+    }
+    
+    public void resetPlayerValues() {
+        this.name = "";
+        this.score = 0;
+        this.timeElapsed = 0;
     }
 
     public class GameController extends KeyAdapter {

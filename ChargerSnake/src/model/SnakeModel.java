@@ -38,6 +38,9 @@ public class SnakeModel implements Subject {
     public void sendData(String name, int score, int time) {
         try {
             Database db = new Database();
+            if(name.isEmpty()) {
+                name = "Unknown";
+            }    
             db.insertLeaderBoard(name, score, time);
             players = db.getLeaderBoard();
         } catch (SQLException e){}
