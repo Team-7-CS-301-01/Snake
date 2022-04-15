@@ -40,6 +40,7 @@ public class SnakeModel implements Subject {
     
     
     public void resetPlayerValues() {
+        score = 0;
         player.resetValues();
     }
     
