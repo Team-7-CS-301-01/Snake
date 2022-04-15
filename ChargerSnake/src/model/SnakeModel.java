@@ -15,7 +15,6 @@ public class SnakeModel implements Subject {
     private static final int BOARD_LENGTH = 500;
     private static final int BOARD_WIDTH = 500;
     private static final int UNIT_SIZE = 25;
-    private static final int GAME_UNITS = (BOARD_WIDTH * BOARD_LENGTH) / UNIT_SIZE;
     private int score;
 
     public SnakeModel() {
@@ -23,10 +22,11 @@ public class SnakeModel implements Subject {
         snake = new ArrayList<GameObject>();
         objects = new ArrayList<ScoreObject>();
         observers = new ArrayList<Observer>();
-         
+
     }
 
     public void initGame() {
+        score = 0;
         snake.clear();
         objects.clear();
         snake.add(new Snake());
@@ -40,8 +40,10 @@ public class SnakeModel implements Subject {
             Database db = new Database();
             db.insertLeaderBoard(name, score, time);
             players = db.getLeaderBoard();
-        } catch (SQLException e){}
+        } catch (SQLException e) {
+        }
     }
+
     public void moveSnake() {
         //loop through snake array and move the position to the previous one
         //for the head, need to move it forward in the direction the head is facing
@@ -130,7 +132,7 @@ public class SnakeModel implements Subject {
     public ArrayList<Player> getPlayerList() {
         return players;
     }
-    
+
     public GameObject getSnake(int x) {
         return snake.get(x);
     }
@@ -155,7 +157,7 @@ public class SnakeModel implements Subject {
             o.update(m);
         }
     }
-    
+
     public int getBOARD_LENGTH() {
         return BOARD_LENGTH;
     }
@@ -166,10 +168,6 @@ public class SnakeModel implements Subject {
 
     public int getUNIT_SIZE() {
         return UNIT_SIZE;
-    }
-
-    public int getGAME_UNITS() {
-        return GAME_UNITS;
     }
 
     public int getSnakeLength() {

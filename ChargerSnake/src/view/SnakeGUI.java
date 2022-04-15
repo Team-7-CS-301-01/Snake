@@ -113,9 +113,9 @@ public class SnakeGUI implements Observer {
         window.setSize(500, 600);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         window.setLocationRelativeTo(null);
-        
+
         window.setVisible(true);
 
         window.setResizable(false);
@@ -262,7 +262,7 @@ public class SnakeGUI implements Observer {
     public JFrame getGameFrame() {
         return window;
     }
-    
+
     public String getName() {
         return inputField.getText();
     }

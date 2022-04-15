@@ -28,6 +28,11 @@ public class GamePieces extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        for (int i = 0; i < model.getBOARD_WIDTH() / model.getUNIT_SIZE(); i++) {
+            g.drawLine(i * model.getUNIT_SIZE(), 0, i * model.getUNIT_SIZE(), model.getBOARD_LENGTH());
+            g.drawLine(0, i * model.getUNIT_SIZE(), model.getBOARD_WIDTH(), i * model.getUNIT_SIZE());
+        }
+
         g.setColor(Color.red);
         g.fillOval(model.getScoreObject(0).getx(), model.getScoreObject(0).gety(), model.getUNIT_SIZE(), model.getUNIT_SIZE());
 

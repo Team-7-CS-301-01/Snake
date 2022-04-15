@@ -34,10 +34,10 @@ public class SnakeController implements ActionListener {
         timeA = (System.currentTimeMillis() / 1000);
         model.spawnObject();
     }
-    
+
     public void endGame() {
         view.drawLeaderBoardFrame();
-        
+
     }
 
     @Override
@@ -76,9 +76,9 @@ public class SnakeController implements ActionListener {
             game_Over = false;
             view.drawStartFrame();
         } else if (!running && game_Over) {
-            
+
             timer.stop();
-            timeElapsed = (int)((System.currentTimeMillis() / 1000) - timeA);
+            timeElapsed = (int) ((System.currentTimeMillis() / 1000) - timeA);
             score = model.getScore();
             name = view.getName();
             model.sendData(name, score, timeElapsed);
