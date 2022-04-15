@@ -8,14 +8,14 @@ package Utility;
  */
 public class Player {
     
-    private final String name;
+    private String name;
     
-    private final String score;
+    private int score;
     
-    private final String time;
+    private int time;
     
     
-    Player(String n, String s, String t)
+    Player(String n, int s, int t)
     {
         this.name = n;
         this.score = s;
@@ -23,24 +23,44 @@ public class Player {
     }
 
     public Player() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.name = "";
+        this.score = 0;
+        this.time = 0;
     }
 
-  
-        
+    public void setName(String n) 
+    {
+        this.name = n;
+    }
+    public void setScore(int s) 
+    {
+        this.score = s;
+    }
+    
+    public void setTime(int t) 
+    {
+        this.time = t;
+    }
+    
     public String getName()
     {
         return this.name;
     }
     
-    public String getScore()
+    public int getScore()
     {
         return this.score;
     }
     
-    public String getTime()
+    public int getTime()
     {
         return this.time;
     }
     
+    public void resetValues()
+    {
+        this.setName("");
+        this.setScore(0);
+        this.setTime(0);
+    }    
 }

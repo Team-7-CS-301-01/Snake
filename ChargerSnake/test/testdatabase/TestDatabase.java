@@ -80,7 +80,7 @@ public class TestDatabase {
                     
                     System.out.println("\n");
                     
-                    db.insertLeaderBoard(a, b, c);
+                 //   db.insertLeaderBoard(a, b, c);
                     
                   break;
                   
@@ -135,7 +135,6 @@ public class TestDatabase {
         } while(done == 1);
         
         
-        db.deleteLeaderBoard();
         
         db.disconnectFromLeaderBoard() ;
 

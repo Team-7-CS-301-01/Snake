@@ -6,8 +6,8 @@ package view;
 
 import Utility.Message;
 import Utility.Observer;
-import Utility.Player;
 import controller.SnakeController;
+import controller.SnakeController.GameController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,16 +41,22 @@ public class SnakeGUI implements Observer {
     private final JButton returnToStartButton;
     private final SnakeModel model;
     private final SnakeController controller;
+    private final SnakeController.GameController gameController;
 
     SnakeGUI(SnakeController controller, SnakeModel model) {
         
         this.model = model;
-
+        
+        model.attach(this);
+        
         this.controller = controller;
-
+        
+        gameController = controller.new GameController();
         //initLocal
         window = new JFrame("Charger Snake");
-
+        
+      //  SnakeController.GameController gameController = controller.new GameController();
+        
         controller.initController(model, this);
 
         GamePanel = new JPanel();
@@ -112,7 +118,9 @@ public class SnakeGUI implements Observer {
         window.add(GamePanel, BorderLayout.CENTER);
 
         window.add(MenuPanel, BorderLayout.PAGE_END);
-
+        
+        window.addKeyListener(gameController);
+        
         window.setSize(500, 600);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +132,9 @@ public class SnakeGUI implements Observer {
         window.setResizable(false);
 
         window.pack();
-
+        
+      //  window.addKeyListener(gameController);
+        
         window.setFocusable(true);
     }
 
@@ -247,7 +257,6 @@ public class SnakeGUI implements Observer {
 
     public static void main(String[] args) {
         new SnakeGUI(new SnakeController(), new SnakeModel());
-
     }
 
     public JButton getStart() {
@@ -270,12 +279,7 @@ public class SnakeGUI implements Observer {
         return window;
     }
     
-    public String getName() {
-        return inputField.getText();
-    }
-    
-    
-    
+   
 
     @Override
     public void update(Message m) {
@@ -288,6 +292,7 @@ public class SnakeGUI implements Observer {
                     drawLeaderBoardFrame();
                     break;
             case "DrawGamePlayFrame":
+                    model.setName(inputField.getText());
                     drawGamePlayFrame();
                     break;        
             case "DrawPauseFrame":
@@ -301,15 +306,12 @@ public class SnakeGUI implements Observer {
                     break;
             case "UpdateScore":
                     scoreLabelArea.setText(Integer.toString(model.getScore()));
-                    break;                    
-         }
+                    break;       
+                                
+        }
        
     }
-    
-    
- 
-    
-    
+  
    }
 
 
