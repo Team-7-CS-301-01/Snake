@@ -16,7 +16,7 @@ public class ScoreLabelAreaComp {
 
     private final JLabel displayScore;
 
-    public ScoreLabelAreaComp() {
+    ScoreLabelAreaComp() {
         
         displayScore = new JLabel("Score:", JLabel.CENTER);
 

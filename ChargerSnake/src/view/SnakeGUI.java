@@ -6,6 +6,7 @@ package view;
 
 import Utility.Message;
 import Utility.Observer;
+import Utility.Player;
 import controller.SnakeController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -42,6 +43,7 @@ public class SnakeGUI implements Observer {
     private final SnakeController controller;
 
     SnakeGUI(SnakeController controller, SnakeModel model) {
+        
         this.model = model;
 
         this.controller = controller;
@@ -126,10 +128,12 @@ public class SnakeGUI implements Observer {
         window.setFocusable(true);
     }
 
-    public void drawStartFrame() {
+    private void drawStartFrame() {
 
         clearGamePanel();
+        
         clearMenuPanel();
+        
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         GamePanel.add(chargerSnakeMess);
@@ -148,14 +152,16 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void drawGamePlayFrame() {
+    private void drawGamePlayFrame() {
 
         clearGamePanel();
+        
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         GamePanel.add(new GamePieces(model));
+        
         GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
         
@@ -173,9 +179,10 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void drawPauseFrame() {
+    private void drawPauseFrame() {
 
         clearGamePanel();
+        
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
@@ -198,9 +205,10 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void drawLeaderBoardFrame() {
+    private void drawLeaderBoardFrame() {
 
         clearGamePanel();
+        
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
@@ -217,16 +225,17 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void clearGamePanel() {
+    private void clearGamePanel() {
 
         GamePanel.removeAll();
+        
         GamePanel.revalidate();
 
         GamePanel.repaint();
 
     }
 
-    public void clearMenuPanel() {
+    private void clearMenuPanel() {
 
         MenuPanel.removeAll();
 
@@ -265,13 +274,42 @@ public class SnakeGUI implements Observer {
         return inputField.getText();
     }
     
-    public void clearName() {
-        inputField.setText("");
-    }
+    
     
 
     @Override
     public void update(Message m) {
-        scoreLabelArea.setText(Integer.toString(model.getScore()));
+        
+        switch (m.getMessageContent()) {
+            case "DrawStartFrame":
+                    drawStartFrame();
+                    break;   
+            case "DrawLeaderBoardFrame":
+                    drawLeaderBoardFrame();
+                    break;
+            case "DrawGamePlayFrame":
+                    drawGamePlayFrame();
+                    break;        
+            case "DrawPauseFrame":
+                    drawPauseFrame();
+                    break;        
+            case "RePaintGameFrame":
+                    window.repaint();
+                    break;              
+            case "ClearName":
+                    inputField.setText("");
+                    break;
+            case "UpdateScore":
+                    scoreLabelArea.setText(Integer.toString(model.getScore()));
+                    break;                    
+         }
+       
     }
-}
+    
+    
+ 
+    
+    
+   }
+
+

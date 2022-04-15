@@ -43,6 +43,7 @@ public class SnakeModel implements Subject {
             }    
             db.insertLeaderBoard(name, score, time);
             players = db.getLeaderBoard();
+            db.disconnectFromLeaderBoard() ;
         } catch (SQLException e){}
     }
     public void moveSnake() {

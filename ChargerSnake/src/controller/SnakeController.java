@@ -36,8 +36,7 @@ public class SnakeController implements ActionListener {
     }
     
     public void endGame() {
-        view.drawLeaderBoardFrame();
-        
+        model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
     }
 
     @Override
@@ -54,21 +53,20 @@ public class SnakeController implements ActionListener {
                 game_Over = true;
             }
             if (obj == view.getPause()) {
-                //call func to update score
                 running = false;
-                view.drawPauseFrame();
+                model.notifyUpdate(new Message("DrawPauseFrame"));
             }
         } else if (obj == view.getStart()) {
             running = true;
             startGame();
-            view.drawGamePlayFrame();
+            model.notifyUpdate(new Message("DrawGamePlayFrame"));
         } else if (obj == view.getResume()) {
-            //call func to update score
-            view.drawGamePlayFrame();
+            model.notifyUpdate(new Message("DrawGamePlayFrame"));
             running = true;
         } else if (obj == view.getReturnStart()) {
             game_Over = false;
-            view.drawStartFrame();
+            model.notifyUpdate(new Message("DrawStartFrame"));
+            
         } else if (!running && game_Over) {
             
             timer.stop();
@@ -76,12 +74,17 @@ public class SnakeController implements ActionListener {
             score = model.getScore();
             name = view.getName();
             model.sendData(name, score, timeElapsed);
-            view.drawLeaderBoardFrame();
+            model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
             resetPlayerValues();
-            view.clearName();
-            model.detach(view);
+            model.notifyUpdate(new Message("ClearName"));
+            
+            
+            //need to detach somewhere else
+            //model.detach(view);
         }
-        view.getGameFrame().repaint();
+        
+        model.notifyUpdate(new Message("RePaintGameFrame"));
+        
     }
     
     public void resetPlayerValues() {

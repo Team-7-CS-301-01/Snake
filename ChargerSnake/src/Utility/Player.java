@@ -8,11 +8,11 @@ package Utility;
  */
 public class Player {
     
-    private String name;
+    private final String name;
     
-    private String score;
+    private final String score;
     
-    private String time;
+    private final String time;
     
     
     Player(String n, String s, String t)
@@ -21,6 +21,12 @@ public class Player {
         this.score = s;
         this.time = t;
     }
+
+    public Player() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
         
     public String getName()
     {
