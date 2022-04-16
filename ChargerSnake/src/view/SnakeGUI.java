@@ -149,7 +149,7 @@ public class SnakeGUI implements Observer {
         GamePanel.add(chargerSnakeMess);
 
         GamePanel.add(enterNameMess);
-
+               
         GamePanel.setLayout(new GridLayout(3, 1, 0, 5));
 
         ////////////////////////////////////////////////////////////////

@@ -46,7 +46,7 @@ public class LeaderBoard extends JPanel {
         
     }
     
-    private void displayScore(String name, String score, String time)        // TODO: Add scores to player list array, sort, and then add to screen.
+    private void displayScore(String name, String score, String time)       
    {
         JLabel n = new JLabel();
         n.setForeground(Color.BLUE);

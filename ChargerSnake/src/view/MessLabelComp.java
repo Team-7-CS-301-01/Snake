@@ -16,7 +16,9 @@ public class MessLabelComp {
     
     public JLabel getMessLabelComp() {
         
-        JLabel labelOne = new JLabel("Enter a name and click start", JLabel.CENTER);
+        String mess = "Enter a name and click start. Use arrow keys to move.";
+        
+        JLabel labelOne = new JLabel(mess, JLabel.CENTER);
 
         labelOne.setFont(new Font("Verdana", Font.BOLD, 15));
 
