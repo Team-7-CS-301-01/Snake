@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Apr 15 16:15:33 CDT 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0180-2f14-ca6f-00000f5914d0 
+Sat Apr 16 13:33:52 CDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0180-33a7-206e-00000e98daa8 
 on database directory C:\Users\Nathan\Documents\NetBeansProjects\repos\Snake\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
 Loaded from file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/derby.jar
 java.vendor=Oracle Corporation
@@ -11,3 +11,22 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Apr 16 13:33:52 CDT 2022:
+Shutting down instance a816c00e-0180-33a7-206e-00000e98daa8 on database directory C:\Users\Nathan\Documents\NetBeansProjects\repos\Snake\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
+----------------------------------------------------------------
+Sat Apr 16 13:33:52 CDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 6839c016-0180-33a7-206e-00000e98daa8 
+on database directory C:\Users\Nathan\Documents\NetBeansProjects\repos\Snake\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
+Loaded from file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.2+8-LTS-86
+user.dir=C:\Users\Nathan\Documents\NetBeansProjects\repos\Snake\ChargerSnake
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Apr 16 13:33:52 CDT 2022:
+Shutting down instance 6839c016-0180-33a7-206e-00000e98daa8 on database directory C:\Users\Nathan\Documents\NetBeansProjects\repos\Snake\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 

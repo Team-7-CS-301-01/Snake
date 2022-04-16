@@ -62,7 +62,7 @@ public class Database
     
     
     
-    public void deleteLeaderBoard() throws SQLException
+    private void deleteLeaderBoard() throws SQLException
     {
                   
         query = "DROP TABLE LeaderBoard";
@@ -74,9 +74,13 @@ public class Database
     
     
     
-    public void insertLeaderBoard(String name, int score, int time) throws SQLException
+    public void insertLeaderBoard(Player p) throws SQLException
     {
-                      
+            String name = p.getName();
+            
+            int score = p.getScore();
+            
+            int time = p.getTime();
             
             result = statement.executeQuery("SELECT * FROM LeaderBoard ORDER BY Score DESC");
              
@@ -84,10 +88,13 @@ public class Database
             
             int lastPlaceScore = result.getInt("Score");
             
+            int lastPlaceTimeAlive = result.getInt("Time");
+            
+            
             int rowId = result.getInt("Id");
             
          
-            if(score > lastPlaceScore)
+            if(score >= lastPlaceScore && time > lastPlaceTimeAlive)
             {
                 
                 query = "UPDATE LeaderBoard SET Name= '" + name + "', Score= " + score + ", Time= " + time  + " WHERE Id=" + rowId + "";
@@ -149,7 +156,7 @@ public class Database
         
             while (result.next()) {
                 
-                playerList.add(new Player(result.getString("Name"), result.getString("Score"), result.getString("Time")));
+                playerList.add(new Player(result.getString("Name"), result.getInt("Score"), result.getInt("Time")));
                 
             }    
             

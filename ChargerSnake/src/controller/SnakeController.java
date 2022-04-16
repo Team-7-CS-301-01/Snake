@@ -16,28 +16,23 @@ public class SnakeController implements ActionListener {
     private Timer timer;
     private long timeA;
     private int timeElapsed;
-    private int score;
-    private String name;
     private final int DELAY = 1000 / 10;
 
     public void initController(SnakeModel model, SnakeGUI view) {
         this.model = model;
         this.view = view;
         timer = new Timer(DELAY, this);
-        this.view.getGameFrame().addKeyListener(new GameController());
     }
 
     public void startGame() {
         model.initGame();
-        model.attach(view);
         timer.start();
         timeA = (System.currentTimeMillis() / 1000);
         model.spawnObject();
     }
 
     public void endGame() {
-        view.drawLeaderBoardFrame();
-
+        model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
     }
 
     @Override
@@ -54,38 +49,37 @@ public class SnakeController implements ActionListener {
                 game_Over = true;
             }
             if (obj == view.getPause()) {
-                //call func to update score
                 running = false;
-                view.drawPauseFrame();
+                model.notifyUpdate(new Message("DrawPauseFrame"));
             }
         } else if (obj == view.getStart()) {
-            //save player name in Player obj in model
-            //store till game ends
-            //then send that info to database to see if it earns spot
-
-            //call func to update score
             running = true;
             startGame();
-
-            view.drawGamePlayFrame();
+            model.notifyUpdate(new Message("DrawGamePlayFrame"));
         } else if (obj == view.getResume()) {
-            //call func to update score
-            view.drawGamePlayFrame();
+            model.notifyUpdate(new Message("DrawGamePlayFrame"));
             running = true;
         } else if (obj == view.getReturnStart()) {
             game_Over = false;
-            view.drawStartFrame();
+            model.notifyUpdate(new Message("DrawStartFrame"));
+
         } else if (!running && game_Over) {
 
             timer.stop();
+
             timeElapsed = (int) ((System.currentTimeMillis() / 1000) - timeA);
-            score = model.getScore();
-            name = view.getName();
-            model.sendData(name, score, timeElapsed);
-            view.drawLeaderBoardFrame();
-            model.detach(view);
+            model.sendDataToDatabase();
+            model.setTime(timeElapsed);
+            model.sendDataToDatabase();
+            model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
+            model.resetPlayerValues();
+            model.notifyUpdate(new Message("ClearName"));
+            //need to detach somewhere else Maybe when user clicks on exit button
+            //model.detach(view);
         }
-        view.getGameFrame().repaint();
+
+        model.notifyUpdate(new Message("RePaintGameFrame"));
+
     }
 
     public class GameController extends KeyAdapter {

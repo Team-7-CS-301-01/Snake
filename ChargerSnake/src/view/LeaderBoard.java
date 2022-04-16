@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,7 +37,9 @@ public class LeaderBoard extends JPanel {
         for(int i = 0; i < 10; i++)
         {
             Player p = pList.get(i);
-            displayScore(p.getName(), p.getScore(), p.getTime());
+            int s = p.getScore();
+            int t = p.getTime();
+            displayScore(p.getName(), valueOf(s), valueOf(t));
         }
        
         

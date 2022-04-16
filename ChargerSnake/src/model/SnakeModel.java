@@ -15,9 +15,11 @@ public class SnakeModel implements Subject {
     private static final int BOARD_LENGTH = 500;
     private static final int BOARD_WIDTH = 500;
     private static final int UNIT_SIZE = 25;
+    private Player player;
     private int score;
 
     public SnakeModel() {
+        player = new Player();
         random = new Random();
         snake = new ArrayList<GameObject>();
         objects = new ArrayList<ScoreObject>();
@@ -35,11 +37,32 @@ public class SnakeModel implements Subject {
         }
     }
 
-    public void sendData(String name, int score, int time) {
+    public void resetPlayerValues() {
+        score = 0;
+        player.resetValues();
+    }
+
+    public void setName(String n) {
+        player.setName(n);
+    }
+
+    public void setScore(int s) {
+        player.setScore(s);
+    }
+
+    public void setTime(int t) {
+        player.setTime(t);
+    }
+
+    public void sendDataToDatabase() {
         try {
             Database db = new Database();
-            db.insertLeaderBoard(name, score, time);
+            if (player.getName().isEmpty()) {
+                player.setName("Unknown");
+            }
+            db.insertLeaderBoard(player);
             players = db.getLeaderBoard();
+            db.disconnectFromLeaderBoard();
         } catch (SQLException e) {
         }
     }
@@ -123,6 +146,7 @@ public class SnakeModel implements Subject {
             if ((snake.get(0).getx() == objects.get(i).getx()) && (snake.get(0).gety() == objects.get(i).gety())) {
                 addSnake();
                 score++;
+                player.setScore(score);
                 objects.remove(i);
                 spawnObject();
             }
@@ -175,6 +199,6 @@ public class SnakeModel implements Subject {
     }
 
     public int getScore() {
-        return score;
+        return player.getScore();
     }
 }

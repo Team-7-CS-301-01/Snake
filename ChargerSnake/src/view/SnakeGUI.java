@@ -7,15 +7,17 @@ package view;
 import Utility.Message;
 import Utility.Observer;
 import controller.SnakeController;
+import controller.SnakeController.GameController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import model.SnakeModel;
 
 /**
@@ -33,21 +35,27 @@ public class SnakeGUI implements Observer {
     private final JTextField inputField;
     private final JButton pauseButton;
     private final JLabel scoreLabel;
-    private final JTextArea scoreTextArea;
+    private final JLabel scoreLabelArea;
     private final JLabel pauseLabel;
     private final JButton resumeButton;
     private final JButton returnToStartButton;
     private final SnakeModel model;
     private final SnakeController controller;
+    private final SnakeController.GameController gameController;
 
     SnakeGUI(SnakeController controller, SnakeModel model) {
+
         this.model = model;
+
+        model.attach(this);
 
         this.controller = controller;
 
+        gameController = controller.new GameController();
         //initLocal
         window = new JFrame("Charger Snake");
 
+        //  SnakeController.GameController gameController = controller.new GameController();
         controller.initController(model, this);
 
         GamePanel = new JPanel();
@@ -66,7 +74,7 @@ public class SnakeGUI implements Observer {
 
         scoreLabel = new ScoreLabelComp().getScoreLabelComp();
 
-        scoreTextArea = new ScoreTextAreaComp().getScoreTextAreaComp();
+        scoreLabelArea = new ScoreLabelAreaComp().getScoreLabelAreaComp();
 
         pauseLabel = new PauseLabelComp().getPauseLabelComp();
 
@@ -110,6 +118,8 @@ public class SnakeGUI implements Observer {
 
         window.add(MenuPanel, BorderLayout.PAGE_END);
 
+        window.addKeyListener(gameController);
+
         window.setSize(500, 600);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,13 +132,16 @@ public class SnakeGUI implements Observer {
 
         window.pack();
 
+        //  window.addKeyListener(gameController);
         window.setFocusable(true);
     }
 
-    public void drawStartFrame() {
+    private void drawStartFrame() {
 
         clearGamePanel();
+
         clearMenuPanel();
+
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         GamePanel.add(chargerSnakeMess);
@@ -147,26 +160,25 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void drawGamePlayFrame() {
+    private void drawGamePlayFrame() {
 
         clearGamePanel();
+
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
-        //proof of concept - drawing rectangle the same way the snake and score obj would be drawn
         GamePanel.add(new GamePieces(model));
+
         GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
-        //real drawing of snake and score obj
-        //GamePanel.add(new GamePieces(model));
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         MenuPanel.add(pauseButton);
 
         MenuPanel.add(scoreLabel);
 
-        MenuPanel.add(scoreTextArea);
+        MenuPanel.add(scoreLabelArea);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
@@ -174,9 +186,10 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void drawPauseFrame() {
+    private void drawPauseFrame() {
 
         clearGamePanel();
+
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
@@ -191,7 +204,7 @@ public class SnakeGUI implements Observer {
 
         MenuPanel.add(scoreLabel);
 
-        MenuPanel.add(scoreTextArea);
+        MenuPanel.add(scoreLabelArea);
 
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
@@ -199,14 +212,14 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void drawLeaderBoardFrame() {
+    private void drawLeaderBoardFrame() {
 
         clearGamePanel();
+
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
-        //LeaderBoard needs work
         GamePanel.add(new LeaderBoard(model));
 
         /////////////////////////////////////////////////////
@@ -219,16 +232,17 @@ public class SnakeGUI implements Observer {
 
     }
 
-    public void clearGamePanel() {
+    private void clearGamePanel() {
 
         GamePanel.removeAll();
+
         GamePanel.revalidate();
 
         GamePanel.repaint();
 
     }
 
-    public void clearMenuPanel() {
+    private void clearMenuPanel() {
 
         MenuPanel.removeAll();
 
@@ -240,7 +254,6 @@ public class SnakeGUI implements Observer {
 
     public static void main(String[] args) {
         new SnakeGUI(new SnakeController(), new SnakeModel());
-
     }
 
     public JButton getStart() {
@@ -269,6 +282,33 @@ public class SnakeGUI implements Observer {
 
     @Override
     public void update(Message m) {
-        scoreTextArea.setText(Integer.toString(model.getScore()));
+
+        switch (m.getMessageContent()) {
+            case "DrawStartFrame":
+                drawStartFrame();
+                break;
+            case "DrawLeaderBoardFrame":
+                drawLeaderBoardFrame();
+                break;
+            case "DrawGamePlayFrame":
+                model.setName(inputField.getText());
+                drawGamePlayFrame();
+                break;
+            case "DrawPauseFrame":
+                drawPauseFrame();
+                break;
+            case "RePaintGameFrame":
+                window.repaint();
+                break;
+            case "ClearName":
+                inputField.setText("");
+                break;
+            case "UpdateScore":
+                scoreLabelArea.setText(Integer.toString(model.getScore()));
+                break;
+
+        }
+
     }
+
 }
