@@ -15,10 +15,8 @@ public class SnakeModel implements Subject {
     private static final int BOARD_LENGTH = 500;
     private static final int BOARD_WIDTH = 500;
     private static final int UNIT_SIZE = 25;
-    private static final int GAME_UNITS = (BOARD_WIDTH * BOARD_LENGTH) / UNIT_SIZE;
     private Player player;
     private int score;
-    
 
     public SnakeModel() {
         player = new Player();
@@ -26,10 +24,11 @@ public class SnakeModel implements Subject {
         snake = new ArrayList<GameObject>();
         objects = new ArrayList<ScoreObject>();
         observers = new ArrayList<Observer>();
-         
+
     }
 
     public void initGame() {
+        score = 0;
         snake.clear();
         objects.clear();
         snake.add(new Snake());
@@ -37,37 +36,37 @@ public class SnakeModel implements Subject {
             snake.add(new GameObject());
         }
     }
-    
-    
+
     public void resetPlayerValues() {
         score = 0;
         player.resetValues();
     }
-    
+
     public void setName(String n) {
         player.setName(n);
     }
-    
+
     public void setScore(int s) {
         player.setScore(s);
     }
-    
-    public void setTime(int t) {   
+
+    public void setTime(int t) {
         player.setTime(t);
     }
 
     public void sendDataToDatabase() {
         try {
             Database db = new Database();
-            if(player.getName().isEmpty()) {
+            if (player.getName().isEmpty()) {
                 player.setName("Unknown");
-            }    
+            }
             db.insertLeaderBoard(player);
             players = db.getLeaderBoard();
-            db.disconnectFromLeaderBoard() ;
-        } catch (SQLException e){}
+            db.disconnectFromLeaderBoard();
+        } catch (SQLException e) {
+        }
     }
-    
+
     public void moveSnake() {
         //loop through snake array and move the position to the previous one
         //for the head, need to move it forward in the direction the head is facing
@@ -157,7 +156,7 @@ public class SnakeModel implements Subject {
     public ArrayList<Player> getPlayerList() {
         return players;
     }
-    
+
     public GameObject getSnake(int x) {
         return snake.get(x);
     }
@@ -182,7 +181,7 @@ public class SnakeModel implements Subject {
             o.update(m);
         }
     }
-    
+
     public int getBOARD_LENGTH() {
         return BOARD_LENGTH;
     }
@@ -193,10 +192,6 @@ public class SnakeModel implements Subject {
 
     public int getUNIT_SIZE() {
         return UNIT_SIZE;
-    }
-
-    public int getGAME_UNITS() {
-        return GAME_UNITS;
     }
 
     public int getSnakeLength() {

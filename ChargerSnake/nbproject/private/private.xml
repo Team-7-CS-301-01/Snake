@@ -3,6 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/model/SnakeModel.java</file>
+            <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/controller/SnakeController.java</file>
+            <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/view/GamePieces.java</file>
+            <file>file:/C:/Users/Nathan/Documents/NetBeansProjects/repos/Snake/ChargerSnake/src/view/SnakeGUI.java</file>
+=======
             <file>file:/home/jmoore/GitRepo/Snake/ChargerSnake/src/view/ScoreLabelComp.java</file>
             <file>file:/home/jmoore/GitRepo/Snake/ChargerSnake/src/model/SnakeModel.java</file>
             <file>file:/home/jmoore/GitRepo/Snake/ChargerSnake/src/view/ScoreLabelAreaComp.java</file>
@@ -10,6 +16,7 @@
             <file>file:/home/jmoore/GitRepo/Snake/ChargerSnake/src/Utility/Database.java</file>
             <file>file:/home/jmoore/GitRepo/Snake/ChargerSnake/src/view/InputFieldComp.java</file>
             <file>file:/home/jmoore/GitRepo/Snake/ChargerSnake/src/view/SnakeGUI.java</file>
+>>>>>>> e649ea84a9dc2af10bf41781e28ed96d15b6e3d7
         </group>
     </open-files>
 </project-private>

@@ -18,7 +18,6 @@ public class SnakeController implements ActionListener {
     private int timeElapsed;
     private final int DELAY = 1000 / 10;
 
-
     public void initController(SnakeModel model, SnakeGUI view) {
         this.model = model;
         this.view = view;
@@ -31,7 +30,7 @@ public class SnakeController implements ActionListener {
         timeA = (System.currentTimeMillis() / 1000);
         model.spawnObject();
     }
-    
+
     public void endGame() {
         model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
     }
@@ -63,27 +62,25 @@ public class SnakeController implements ActionListener {
         } else if (obj == view.getReturnStart()) {
             game_Over = false;
             model.notifyUpdate(new Message("DrawStartFrame"));
-            
+
         } else if (!running && game_Over) {
-            
+
             timer.stop();
-            timeElapsed = (int)((System.currentTimeMillis() / 1000) - timeA);
+
+            timeElapsed = (int) ((System.currentTimeMillis() / 1000) - timeA);
+            model.sendDataToDatabase();
             model.setTime(timeElapsed);
             model.sendDataToDatabase();
             model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
             model.resetPlayerValues();
             model.notifyUpdate(new Message("ClearName"));
-            
-            
-            
             //need to detach somewhere else Maybe when user clicks on exit button
             //model.detach(view);
         }
-        
+
         model.notifyUpdate(new Message("RePaintGameFrame"));
-        
+
     }
-    
 
     public class GameController extends KeyAdapter {
 
