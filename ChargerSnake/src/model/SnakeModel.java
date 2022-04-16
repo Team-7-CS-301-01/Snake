@@ -1,5 +1,6 @@
 package model;
 
+import Utility.Player;
 import Utility.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
