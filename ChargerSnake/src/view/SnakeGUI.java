@@ -44,18 +44,19 @@ public class SnakeGUI implements Observer {
     private final SnakeController.GameController gameController;
 
     SnakeGUI(SnakeController controller, SnakeModel model) {
-
+        
         this.model = model;
-
+        
         model.attach(this);
-
+        
         this.controller = controller;
-
+        
         gameController = controller.new GameController();
         //initLocal
         window = new JFrame("Charger Snake");
-
-        //  SnakeController.GameController gameController = controller.new GameController();
+        
+      //  SnakeController.GameController gameController = controller.new GameController();
+        
         controller.initController(model, this);
 
         GamePanel = new JPanel();
@@ -117,31 +118,32 @@ public class SnakeGUI implements Observer {
         window.add(GamePanel, BorderLayout.CENTER);
 
         window.add(MenuPanel, BorderLayout.PAGE_END);
-
+        
         window.addKeyListener(gameController);
-
+        
         window.setSize(500, 600);
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         window.setLocationRelativeTo(null);
-
+        
         window.setVisible(true);
 
         window.setResizable(false);
 
         window.pack();
-
-        //  window.addKeyListener(gameController);
+        
+      //  window.addKeyListener(gameController);
+        
         window.setFocusable(true);
     }
 
     private void drawStartFrame() {
 
         clearGamePanel();
-
+        
         clearMenuPanel();
-
+        
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         GamePanel.add(chargerSnakeMess);
@@ -163,15 +165,16 @@ public class SnakeGUI implements Observer {
     private void drawGamePlayFrame() {
 
         clearGamePanel();
-
+        
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         GamePanel.add(new GamePieces(model));
-
+        
         GamePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
+        
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         MenuPanel.add(pauseButton);
@@ -189,7 +192,7 @@ public class SnakeGUI implements Observer {
     private void drawPauseFrame() {
 
         clearGamePanel();
-
+        
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
@@ -215,7 +218,7 @@ public class SnakeGUI implements Observer {
     private void drawLeaderBoardFrame() {
 
         clearGamePanel();
-
+        
         clearMenuPanel();
 
         ////////////////////////////////////////////////////////////////
@@ -235,7 +238,7 @@ public class SnakeGUI implements Observer {
     private void clearGamePanel() {
 
         GamePanel.removeAll();
-
+        
         GamePanel.revalidate();
 
         GamePanel.repaint();
@@ -275,40 +278,40 @@ public class SnakeGUI implements Observer {
     public JFrame getGameFrame() {
         return window;
     }
-
-    public String getName() {
-        return inputField.getText();
-    }
+    
+   
 
     @Override
     public void update(Message m) {
-
+        
         switch (m.getMessageContent()) {
             case "DrawStartFrame":
-                drawStartFrame();
-                break;
+                    drawStartFrame();
+                    break;   
             case "DrawLeaderBoardFrame":
-                drawLeaderBoardFrame();
-                break;
+                    drawLeaderBoardFrame();
+                    break;
             case "DrawGamePlayFrame":
-                model.setName(inputField.getText());
-                drawGamePlayFrame();
-                break;
+                    model.setName(inputField.getText());
+                    drawGamePlayFrame();
+                    break;        
             case "DrawPauseFrame":
-                drawPauseFrame();
-                break;
+                    drawPauseFrame();
+                    break;        
             case "RePaintGameFrame":
-                window.repaint();
-                break;
+                    window.repaint();
+                    break;              
             case "ClearName":
-                inputField.setText("");
-                break;
+                    inputField.setText("");
+                    break;
             case "UpdateScore":
-                scoreLabelArea.setText(Integer.toString(model.getScore()));
-                break;
-
+                    scoreLabelArea.setText(Integer.toString(model.getScore()));
+                    break;       
+                                
         }
-
+       
     }
+  
+   }
 
-}
+
