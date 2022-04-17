@@ -2,6 +2,15 @@ package Utility;
 import java.sql.*;
 import java.util.ArrayList;
  
+/**
+ * 
+ * @author jmoore
+ * This class will be responsible for storing player data 
+ * such as the Player's name, score, and time. This depends upon the use
+ * of Apache Derby which is a Java/SQL hybrid. It basically allows for
+ * the execution of queries and the results of queries to be stored in objects
+ * and to call methods on those objects to manipulate the data.
+ */
 
 public class Database 
 {
@@ -13,7 +22,16 @@ public class Database
     private ResultSet result;
     
 
-    
+    /**
+     *
+     * @throws SQLException 
+     * The constructor sets up a connection for the database and
+     * initializes variables for later use. In addition the constructor makes
+     * a call to doesTableExist. If the database already exists then nothing
+     * is created. If the database does not exist then ten entries are created
+     * with name = "Unknown", score = 0, and time = 0. You can think of it
+     * as a table with 10 rows and 3 columns.
+     */
     public Database() throws SQLException
     {
         
@@ -37,7 +55,10 @@ public class Database
     }
     
     
-    
+    /**
+     * This method is responsible for disconnecting from the database
+     * and shutting it down properly.
+     */
     public void disconnectFromLeaderBoard() 
     {
 
@@ -61,7 +82,13 @@ public class Database
     }    
     
     
-    
+    /**
+     * 
+     * @throws SQLException 
+     * This method is left in just in case a user wants to use 
+     * for testing purposes. This will delete the database but not disconnect.
+     * You will still need to disconnect after deleting.
+     */
     private void deleteLeaderBoard() throws SQLException
     {
                   
@@ -73,7 +100,16 @@ public class Database
     }
     
     
-    
+    /**
+     * 
+     * @param p
+     * @throws SQLException 
+     * This method is responsible for inserting a player(made up of
+     * name, score, and time) into the database. If the Player's score
+     * is greater than or equal to the last place score AND the time 
+     * is greater than the last place time then the player will be added
+     * to the database.
+     */
     public void insertLeaderBoard(Player p) throws SQLException
     {
             String name = p.getName();
@@ -107,7 +143,12 @@ public class Database
     }
     
 
-    
+    /**
+     * 
+     * @throws SQLException 
+     * This method will populate the leaderboard with placeholder values.
+     * It will be called in the constructor if no database exists already.
+     */
     private void initLeaderBoard() throws SQLException
     {
         
@@ -144,7 +185,13 @@ public class Database
    
     
         
-    
+    /**
+     * 
+     * @return
+     * @throws SQLException 
+     * This method is responsible for extracting the 10 players and 
+     * storing them in a ArrayList to be returned to the model.
+     */
     public ArrayList<Player> getLeaderBoard() throws SQLException
     {
         
@@ -165,7 +212,16 @@ public class Database
     }
     
     
-    
+    /**
+     * 
+     * @param tableName
+     * @return
+     * @throws SQLException 
+     * This method collects metadata about the sql table to determine
+     * whether or not it even exists. The result of this inquiry will be
+     * returned to the constructor to determine whether or not a database needs
+     * to be created.
+     */
     private boolean doesTableExists(String tableName) throws SQLException
     {
         

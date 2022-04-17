@@ -74,10 +74,6 @@ public class SnakeController implements ActionListener {
             model.resetPlayerValues();
             model.notifyUpdate(new Message("ClearName"));
             
-            
-            
-            //need to detach somewhere else Maybe when user clicks on exit button
-            //model.detach(view);
         }
         
         model.notifyUpdate(new Message("RePaintGameFrame"));
