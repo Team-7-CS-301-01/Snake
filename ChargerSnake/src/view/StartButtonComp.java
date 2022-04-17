@@ -8,7 +8,6 @@ import javax.swing.JButton;
 
 /**
  * Class for displaying the start button on the start screen.
- * @author jmoore
  */
 public class StartButtonComp {
     

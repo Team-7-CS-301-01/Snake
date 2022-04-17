@@ -11,7 +11,6 @@ import javax.swing.JButton;
 /**
  * Class to create a return to start button on the leaderboard. This button takes
  * the user back to the start screen.
- * @author jmoore
  */
 public class ReturnStartComp {
     

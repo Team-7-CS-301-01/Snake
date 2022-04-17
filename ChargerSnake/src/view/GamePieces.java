@@ -12,7 +12,6 @@ import model.SnakeModel;
 
 /**
  * Contains methods to draw game pieces to the screen during the game.
- * @author jmoore
  */
 public class GamePieces extends JPanel {
 

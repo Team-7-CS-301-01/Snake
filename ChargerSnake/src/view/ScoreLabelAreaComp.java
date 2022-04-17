@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 /**
  * Class for displaying the score to the bottom of the screen during gameplay.
- * @author jmoore
  */
 public class ScoreLabelAreaComp {
 

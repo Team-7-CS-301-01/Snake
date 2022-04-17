@@ -19,7 +19,6 @@ import model.SnakeModel;
 /**
  * Class for methods to display the leaderboard to the screen after the game has
  * ended.
- * @author jmoore
  */
 public class LeaderBoard extends JPanel {
     

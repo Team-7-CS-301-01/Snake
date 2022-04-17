@@ -10,7 +10,6 @@ import javax.swing.JButton;
 
 /**
  * Class to create a resume button to return to gameplay from the pause screen.
- * @author jmoore
  */
 public class ResumeButtonComp {
     

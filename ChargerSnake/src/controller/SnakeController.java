@@ -6,6 +6,11 @@ import model.*;
 import view.*;
 import javax.swing.Timer;
 
+/**
+ * Controls the logic of the overall gameplay to work with the UI elements in the view
+ * 
+ * @implements ActionListener for keeping track of events and actions that may happen in the gameplay
+ */
 public class SnakeController implements ActionListener {
 
     private SnakeModel model;
@@ -18,13 +23,21 @@ public class SnakeController implements ActionListener {
     private int timeElapsed;
     private final int DELAY = 1000 / 10;
 
-
+    /**
+    * Constructor for the controller to get initialized
+    * 
+    * @param model to bring the model information in here
+    * @param view to bring the view information in here
+    */
     public void initController(SnakeModel model, SnakeGUI view) {
         this.model = model;
         this.view = view;
         timer = new Timer(DELAY, this);
     }
 
+    /**
+    * Starting game sequence starts the timers and spawns the snake
+    */
     public void startGame() {
         model.initGame();
         timer.start();
@@ -32,10 +45,19 @@ public class SnakeController implements ActionListener {
         model.spawnObject();
     }
     
+    /**
+    * End game sequence sends an update to the rest of the program to draw the leaderboard
+    */
     public void endGame() {
         model.notifyUpdate(new Message("DrawLeaderBoardFrame"));
     }
 
+    /**
+    * Action performed event listener to control logic for each event in the game, including collision and button clicks
+    * 
+    * @Override to create our own actionPerformed method that invokes from each action in the game
+    * @param e to keep track of the event performed
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
@@ -74,19 +96,25 @@ public class SnakeController implements ActionListener {
             model.resetPlayerValues();
             model.notifyUpdate(new Message("ClearName"));
             
-            
-            
-            //need to detach somewhere else Maybe when user clicks on exit button
-            //model.detach(view);
         }
         
         model.notifyUpdate(new Message("RePaintGameFrame"));
         
     }
     
-
+    /**
+    * GameController class keeps track of the key clicks changing direction during the game
+    * 
+    * @extends KeyAdapter to set up the necessary keyboard drivers to read data
+    */
     public class GameController extends KeyAdapter {
 
+        /**
+        * Tracks the key pressed and stores information in e
+        * 
+        * @Override to use our own logic whenever the keyAdapter invokes keyPressed
+        * @param e to keep track of the key pressed
+        */
         @Override
         public void keyPressed(KeyEvent e) {
             if (running) {

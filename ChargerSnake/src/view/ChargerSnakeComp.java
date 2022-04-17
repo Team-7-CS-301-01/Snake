@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 /**
  * Class to display the title to the start screen
- * @author jmoore
  */
 public class ChargerSnakeComp {
     

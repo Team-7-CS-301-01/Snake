@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 /**
  * Class to display the "Score: " label to the gameplay screen.
- * @author jmoore
  */
 public class ScoreLabelComp {
    

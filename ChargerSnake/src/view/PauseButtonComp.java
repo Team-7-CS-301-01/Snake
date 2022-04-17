@@ -10,7 +10,6 @@ import javax.swing.JButton;
 
 /**
  * Class to create a pause button for the user to press during gameplay.
- * @author jmoore
  */
 public class PauseButtonComp {
     

@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 /**
  * Class to display other text on the start screen to the user
- * @author jmoore
  */
 public class MessLabelComp {
     

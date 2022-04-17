@@ -8,7 +8,6 @@ import javax.swing.JTextField;
 
 /**
  * Class for an input field for your name on the start screen
- * @author jmoore
  */
 public class InputFieldComp {
 

@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 /**
  * Class for the text to be displayed during the pause screen.
- * @author jmoore
  */
 public class PauseLabelComp {
     
