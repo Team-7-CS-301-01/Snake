@@ -1,0 +1,32 @@
+----------------------------------------------------------------
+Sun Apr 17 16:12:33 EDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0180-3927-d589-00000b14f498 
+on database directory C:\Users\jcoll\Downloads\Snake-justin2\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
+Loaded from file:/C:/Users/jcoll/Downloads/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.2+8-LTS-86
+user.dir=C:\Users\jcoll\Downloads\Snake-justin2\ChargerSnake
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Apr 17 16:12:33 EDT 2022:
+Shutting down instance a816c00e-0180-3927-d589-00000b14f498 on database directory C:\Users\jcoll\Downloads\Snake-justin2\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
+----------------------------------------------------------------
+Sun Apr 17 16:12:53 EDT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 6839c016-0180-3927-d589-00000b14f498 
+on database directory C:\Users\jcoll\Downloads\Snake-justin2\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
+Loaded from file:/C:/Users/jcoll/Downloads/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.2+8-LTS-86
+user.dir=C:\Users\jcoll\Downloads\Snake-justin2\ChargerSnake
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Apr 17 16:12:53 EDT 2022:
+Shutting down instance 6839c016-0180-3927-d589-00000b14f498 on database directory C:\Users\jcoll\Downloads\Snake-justin2\ChargerSnake\LeaderBoard with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@659e0bfd 
