@@ -21,7 +21,14 @@ import javax.swing.JTextField;
 import model.SnakeModel;
 
 /**
- *
+ *The SnakeGUI contains all of the objects that make up the view
+ * for the entire program. Java swing was used in this program to implement
+ * the view. It contains the one JFrame, four panels, and several
+ * components which are broken out into multiple files in the view package.
+ * It's main responsibility is to draw the various "Frames" of which there are
+ * four. We have a "StartFrame", "GamePlayFrame", "PauseFrame", and
+ * "LeaderBoardFrame". These methods are called when the model sends a message
+ * which is evaluated with the update method implemented by the Observer interface.
  * @author jmoore
  */
 public class SnakeGUI implements Observer {
@@ -43,6 +50,14 @@ public class SnakeGUI implements Observer {
     private final SnakeController controller;
     private final SnakeController.GameController gameController;
 
+    /**
+     * This constructor gets called at the start of the game. It makes reference
+     * to the controller and model. In addition it initializes all of the elements
+     * of the view that will be operated on. All of the components and two
+     * of the panels are defined in other files in the view.
+     * @param controller
+     * @param model 
+     */
     SnakeGUI(SnakeController controller, SnakeModel model) {
         
         this.model = model;
@@ -83,7 +98,7 @@ public class SnakeGUI implements Observer {
 
         returnToStartButton = new ReturnStartComp().getReturnStartComp();
 
-        //Player needed for user info
+        
         ////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////
         //GamePanel
@@ -132,12 +147,17 @@ public class SnakeGUI implements Observer {
         window.setResizable(false);
 
         window.pack();
-        
-      //  window.addKeyListener(gameController);
-        
+                
         window.setFocusable(true);
     }
 
+    /**
+     * This method is responsible for clearing the game and menu panel's
+     * and adding the "Charger Snake" and "Enter a name and click start. Use
+     * arrow keys to move." messages to the GamePanel. The MenuPanel will add
+     * the text field for the user to enter their name along with a start button.
+     * Various layout managers were used to order position elements on screen.
+     */
     private void drawStartFrame() {
 
         clearGamePanel();
@@ -161,7 +181,15 @@ public class SnakeGUI implements Observer {
         MenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
 
     }
-
+    /**
+     * This method is responsible for clearing and adding to the game and menu panel's.
+     * The GamePanel will add a new panel on top called GamePieces. GamePieces
+     * itself will draw the snake and score object. The MenuPanel will add
+     * the pause button, the score label, and the updated score. The pause button
+     * will add an action listener which will be used by the controller to listen
+     * for mouse clicks.Various layout managers were used to order 
+     * position elements on screen.
+     */
     private void drawGamePlayFrame() {
 
         clearGamePanel();
@@ -189,6 +217,14 @@ public class SnakeGUI implements Observer {
 
     }
 
+    /**
+     * This method is responsible for clearing and adding to the game and menu panel's.
+     * The GamePanel will add a pause message. The MenuPanel will add
+     * the resume button, the score label, and the updated score. The resume button
+     * will add an action listener which will be used by the controller to listen
+     * for mouse clicks.Various layout managers were used to order 
+     * position elements on screen.
+     */
     private void drawPauseFrame() {
 
         clearGamePanel();
@@ -214,7 +250,15 @@ public class SnakeGUI implements Observer {
         resumeButton.addActionListener(controller);
 
     }
-
+    
+    /**
+     * This method is responsible for clearing and adding to the game and menu panel's.
+     * The GamePanel will add a new panel on top called LeaderBoard. LeaderBoard
+     * itself will draw the LeaderBoard which will contain the name, score, and 
+     * time of the top 10 player's. The MenuPanel will add the return to start 
+     * button which when clicked will return to start frame.Various layout 
+     * managers were used to order position elements on screen.
+     */
     private void drawLeaderBoardFrame() {
 
         clearGamePanel();
@@ -235,6 +279,10 @@ public class SnakeGUI implements Observer {
 
     }
 
+    /**
+     * This method will clear off the top panel of the frame and 
+     * get it ready to have new components or panels to be added.
+     */
     private void clearGamePanel() {
 
         GamePanel.removeAll();
@@ -244,7 +292,11 @@ public class SnakeGUI implements Observer {
         GamePanel.repaint();
 
     }
-
+    
+    /**
+     * This method will clear off the bottom panel of the frame and 
+     * get it ready to have new components or panels to be added.
+     */
     private void clearMenuPanel() {
 
         MenuPanel.removeAll();
@@ -255,32 +307,50 @@ public class SnakeGUI implements Observer {
 
     }
 
+    /**
+     * This will initialize the view, controller, and model for the program
+     * @param args 
+     */
     public static void main(String[] args) {
         new SnakeGUI(new SnakeController(), new SnakeModel());
     }
-
+    
+    /**
+     * This method will return the start button to the controller for evaluation
+     * @return 
+     */
     public JButton getStart() {
         return startButton;
     }
-
+    /**
+     * This method will return the pause button to the controller for evaluation
+     * @return 
+     */
     public JButton getPause() {
         return pauseButton;
     }
-
+    /**
+     * This method will return the resume button to the controller for evaluation
+     * @return 
+     */
     public JButton getResume() {
         return resumeButton;
     }
-
+    /**
+     * This method will return the return to 
+     * start button to the controller for evaluation
+     * @return 
+     */
     public JButton getReturnStart() {
         return returnToStartButton;
     }
-
-    public JFrame getGameFrame() {
-        return window;
-    }
     
-   
 
+/**
+ * This method receives a message from the model telling it 
+ * what method or methods to call in the view. 
+ * @param m 
+ */
     @Override
     public void update(Message m) {
         
